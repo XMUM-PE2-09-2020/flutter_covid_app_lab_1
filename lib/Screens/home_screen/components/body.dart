@@ -60,54 +60,63 @@ class Body extends StatelessWidget {
                         image: "assets/images/confirmed.png",
                         text: 'Confirmed',
                         number: '8960',
+                        press: () {},
                       ),
                       ItemCard(
                         image: "assets/images/recovered.png",
                         text: 'Recovered',
                         number: '3221',
+                        press: () {},
                       ),
                       ItemCard(
                         image: "assets/images/death.png",
                         text: 'Death',
                         number: '169',
+                        press: () {},
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: size.height * 0.08,
+                    height: size.height * 0.07,
                   ),
                   Row(
                     children: <Widget>[
                       ItemCard(
                         image: "assets/images/self-check.png",
                         text: 'Self-Check',
+                        press: () {},
                       ),
                       ItemCard(
                         image: "assets/images/prevention.png",
                         text: 'Prevention',
+                        press: () {},
                       ),
                       ItemCard(
                         image: "assets/images/nearby.png",
                         text: 'Nearby',
+                        press: () {},
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: size.height * 0.05,
+                    height: size.height * 0.04,
                   ),
                   Row(
                     children: <Widget>[
                       ItemCard(
                         image: "assets/images/statistics.png",
                         text: 'Statistics',
+                        press: () {},
                       ),
                       ItemCard(
                         image: "assets/images/contacts.png",
                         text: 'Contacts',
+                        press: () {},
                       ),
                       ItemCard(
                         image: "assets/images/news.png",
                         text: 'News',
+                        press: () {},
                       ),
                     ],
                   ),

@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 class ItemCard extends StatelessWidget {
   final String image, text, number;
+  final Function press;
   const ItemCard({
     Key key,
     @required this.image,
     this.text,
     this.number,
+    this.press,
   }) : super(key: key);
 
   @override
@@ -16,11 +18,7 @@ class ItemCard extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            width: size.width * 0.25,
-            height: size.height * 0.18,
             decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black,
@@ -29,24 +27,33 @@ class ItemCard extends StatelessWidget {
                 ),
               ],
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Image.asset(image),
-                if((number != null) || (text != null))
-                Column(
-                  children: [
-                    if (text != null) Text(text),
-                    if (number != null)
-                      Text(
-                        number,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
+            child: Material(
+              child: Ink(
+                width: size.width * 0.25,
+                height: size.height * 0.18,
+                child: InkWell(
+                  onTap: press,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Image.asset(image),
+                      if ((number != null) || (text != null))
+                        Column(
+                          children: [
+                            if (text != null) Text(text),
+                            if (number != null)
+                              Text(
+                                number,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                          ],
                         ),
-                      ),
-                  ],
+                    ],
+                  ),
                 ),
-              ],
+              ),
             ),
           ),
         ],
