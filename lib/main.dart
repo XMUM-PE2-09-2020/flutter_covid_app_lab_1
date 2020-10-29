@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_covid_app_lab_1/Screens/home_screen/home_screen.dart';
+import 'package:flutter_covid_app_lab_1/Screens/login_screen/login_screen.dart';
 import 'package:flutter_covid_app_lab_1/constants.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: HomeScreen(),
+      home: LoginScreen(),
     );
   }
 }
