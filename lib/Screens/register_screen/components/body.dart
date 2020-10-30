@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_covid_app_lab_1/Screens/home_screen/home_screen.dart';
 import 'package:flutter_covid_app_lab_1/Screens/login_screen/components/logo_name_and_slogan.dart';
+import 'package:flutter_covid_app_lab_1/Screens/login_screen/components/no_account.dart';
 import 'package:flutter_covid_app_lab_1/Screens/login_screen/components/rounded_buttons.dart';
-import 'package:flutter_covid_app_lab_1/Screens/register_screen/signup_screen.dart';
+import 'package:flutter_covid_app_lab_1/Screens/login_screen/components/rounded_input_field.dart';
+import 'package:flutter_covid_app_lab_1/Screens/login_screen/login_screen.dart';
+import 'package:flutter_covid_app_lab_1/Screens/register_screen/components/social_icon.dart';
 
-import 'no_account.dart';
-import 'rounded_input_field.dart';
+import 'or_divider.dart';
 
 class Body extends StatelessWidget {
-  const Body({
-    Key key,
-  }) : super(key: key);
+  const Body({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,7 @@ class Body extends StatelessWidget {
                 ),
                 RoundedInputField(
                   icon: Icons.person,
-                  hintText: "Phone Number",
+                  hintText: "Email Address",
                   onChanged: (value) {},
                 ),
                 RoundedInputField(
@@ -42,29 +41,39 @@ class Body extends StatelessWidget {
                   onChanged: (value) {},
                 ),
                 RoundedButton(
-                  text: "LOGIN",
+                  text: "REGISTER",
+                  press: () {},
+                ),
+                NoAccount(
+                  login: false,
                   press: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return HomeScreen();
+                          return LoginScreen();
                         },
                       ),
                     );
                   },
                 ),
-                NoAccount(
-                  press: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return SignUpScreen();
-                        },
-                      ),
-                    );
-                  },
+                OrDivider(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    SocialIcon(
+                      iconSrc: "assets/icons/facebook.svg",
+                      press: () {},
+                    ),
+                    SocialIcon(
+                      iconSrc: "assets/icons/twitter.svg",
+                      press: () {},
+                    ),
+                    SocialIcon(
+                      iconSrc: "assets/icons/google-plus.svg",
+                      press: () {},
+                    ),
+                  ],
                 )
               ],
             ),
