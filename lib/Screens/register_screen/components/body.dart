@@ -30,7 +30,7 @@ class Body extends StatelessWidget {
                 ),
                 RoundedInputField(
                   icon: Icons.person,
-                  hintText: "Email Address",
+                  hintText: "Phone Number",
                   onChanged: (value) {},
                 ),
                 RoundedInputField(
