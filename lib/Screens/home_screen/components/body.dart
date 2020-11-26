@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_covid_app_lab_1/Screens/self_check/self_check.dart';
 import 'package:flutter_covid_app_lab_1/constants.dart';
 import 'background.dart';
 import 'item_card.dart';
@@ -84,7 +85,16 @@ class Body extends StatelessWidget {
                       ItemCard(
                         image: "assets/images/self-check.png",
                         text: 'Self-Check',
-                        press: () {},
+                        press: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return SelfCheck();
+                              },
+                            ),
+                          );
+                        },
                       ),
                       ItemCard(
                         image: "assets/images/prevention.png",
