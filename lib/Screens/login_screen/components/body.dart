@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_covid_app_lab_1/Screens/home_screen/home_screen.dart';
+import 'package:flutter_covid_app_lab_1/Controller/BottomNavigationBar/BottomNavigationBarController.dart';
 import 'package:flutter_covid_app_lab_1/Screens/login_screen/components/logo_name_and_slogan.dart';
 import 'package:flutter_covid_app_lab_1/Screens/login_screen/components/rounded_buttons.dart';
 import 'package:flutter_covid_app_lab_1/Screens/register_screen/signup_screen.dart';
@@ -48,7 +48,7 @@ class Body extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return HomeScreen();
+                          return BottomNavigationBarController();
                         },
                       ),
                     );
