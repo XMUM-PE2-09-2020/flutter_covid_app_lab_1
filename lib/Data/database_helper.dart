@@ -56,37 +56,4 @@ class DatabaseHelper {
     ''');
     print("Table is created");
   }
-
-  //Registration
-  /*Future<int> createUser(User user) async {
-    var dbClient = await db;
-    int res = await dbClient.insert(
-      table,
-      user.toMap(),
-    );
-    return res;
-  }*/
-
-  //Login
-  /*Future<User> login(var username, String password) async {
-    var dbClient = await db;
-    List<String> columnsToSelect = [
-      DatabaseHelper.columnId,
-      DatabaseHelper.columnEmail,
-      DatabaseHelper.columnPhoneNumber,
-      DatabaseHelper.columnPassword
-    ];
-    String whereString =
-        '(${DatabaseHelper.columnEmail} = $username OR ${DatabaseHelper.columnPhoneNumber} = $username) AND ${DatabaseHelper.columnPassword} = $password';
-    int rowId = 1;
-    List<dynamic> whereArguments = [rowId];
-    List<Map> result = await dbClient.query(
-      DatabaseHelper.table,
-      columns: columnsToSelect,
-      where: whereString,
-      whereArgs: whereArguments,
-    );
-    User user = User.map(result);
-    return user;
-  }*/
 }

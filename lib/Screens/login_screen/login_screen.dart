@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_covid_app_lab_1/Models/user.dart';
 import 'package:flutter_covid_app_lab_1/Screens/register_screen/signup_screen.dart';
-import 'package:sqflite/sqflite.dart';
 
 import 'components/logo_name_and_slogan.dart';
 import 'components/no_account.dart';
@@ -140,6 +139,6 @@ class _LoginScreenState extends State<LoginScreen>
     setState(() {
       isLoading = false;
     });
-    Navigator.of(context).pushNamed("./home");
+    Navigator.of(context).pushNamed("/home");
   }
 }

@@ -6,7 +6,6 @@ import 'package:flutter_covid_app_lab_1/Screens/login_screen/components/rounded_
 import 'package:flutter_covid_app_lab_1/Screens/login_screen/components/rounded_input_field.dart';
 import 'package:flutter_covid_app_lab_1/Screens/login_screen/login_screen.dart';
 import 'package:flutter_covid_app_lab_1/Screens/register_screen/register_presenter.dart';
-import 'package:sqflite/sqflite.dart';
 import 'components/or_divider.dart';
 import 'components/social_icon.dart';
 
