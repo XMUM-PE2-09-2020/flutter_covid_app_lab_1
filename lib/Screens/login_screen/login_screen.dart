@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_covid_app_lab_1/Models/user.dart';
 import 'package:flutter_covid_app_lab_1/Screens/register_screen/signup_screen.dart';
+import 'package:sqflite/sqflite.dart';
 
 import 'components/logo_name_and_slogan.dart';
 import 'components/no_account.dart';
@@ -17,11 +18,14 @@ class _LoginScreenState extends State<LoginScreen>
     implements LoginPageContract {
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  bool isLoading = false;
-  String _phoneOrEmail, _password;
+  bool isLoading;
+  String _username, _password;
   LoginPagePresenter _presenter;
 
-  _loginPageState() {
+  @override
+  void initState() {
+    super.initState();
+    isLoading = false;
     _presenter = LoginPagePresenter(this);
   }
 
@@ -41,8 +45,8 @@ class _LoginScreenState extends State<LoginScreen>
         children: [
           RoundedInputField(
             icon: Icons.person,
-            hintText: "Phone / Email",
-            onSaved: (value) => _phoneOrEmail = value,
+            hintText: "Username",
+            onSaved: (value) => _username = value,
             validator: (value) {
               if (value.isEmpty) {
                 return 'Field required';
@@ -74,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen>
           setState(() {
             isLoading = true;
             formKey.currentState.save();
-            _presenter.doLogin(_phoneOrEmail, _password);
+            _presenter.doLogin(_username, _password);
           });
         }
       },
@@ -122,11 +126,12 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   @override
-  void onLoginError(String error) {
-    _showSnackBar(error);
+  void onLoginError(Error error) {
+    _showSnackBar(error.toString());
     setState(() {
       isLoading = false;
     });
+    print(error.toString());
   }
 
   @override
@@ -135,5 +140,6 @@ class _LoginScreenState extends State<LoginScreen>
     setState(() {
       isLoading = false;
     });
+    Navigator.of(context).pushNamed("./home");
   }
 }

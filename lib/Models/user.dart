@@ -3,7 +3,7 @@ class User {
   String _username;
   String _password;
   String _email;
-  String _phoneNumber;
+  int _phoneNumber;
 
   User(this._username, this._password, this._email, this._phoneNumber);
 
@@ -17,7 +17,7 @@ class User {
   String get username => _username;
   String get password => _password;
   String get email => _email;
-  String get phoneNumber => _phoneNumber;
+  int get phoneNumber => _phoneNumber;
 
   Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();

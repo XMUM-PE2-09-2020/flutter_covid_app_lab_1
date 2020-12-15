@@ -1,9 +1,10 @@
 import 'package:flutter_covid_app_lab_1/Data/rest_data.dart';
 import 'package:flutter_covid_app_lab_1/Models/user.dart';
+import 'package:sqflite/sqflite.dart';
 
 abstract class LoginPageContract {
   void onLoginSuccess(User user);
-  void onLoginError(String error);
+  void onLoginError(Error error);
 }
 
 class LoginPagePresenter {

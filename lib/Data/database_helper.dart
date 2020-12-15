@@ -1,4 +1,3 @@
-import 'package:flutter_covid_app_lab_1/Models/user.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -11,12 +10,11 @@ class DatabaseHelper {
 
   static Database _db;
 
-  static final _databaseName = "CoronaTracker.db";
+  static final _databaseName = "CoronaTracker2.db";
   static final _databaseVersion = 1;
 
   static final table = 'User';
 
-  static final columnId = '_id';
   static final columnUsername = 'username';
   static final columnPassword = 'password';
   static final columnPhoneNumber = 'phone_number';
@@ -50,8 +48,7 @@ class DatabaseHelper {
   void _onCreate(Database db, int version) async {
     await db.execute('''
     CREATE TABLE $table (
-      $columnId INTEGER PRIMARY KEY, 
-      $columnUsername TEXT NOT NULL, 
+      $columnUsername TEXT PRIMARY KEY, 
       $columnPassword TEXT NOT NULL, 
       $columnEmail TEXT NOT NULL, 
       $columnPhoneNumber INTEGER NOT NULL
@@ -61,17 +58,17 @@ class DatabaseHelper {
   }
 
   //Registration
-  Future<int> createUser(User user) async {
+  /*Future<int> createUser(User user) async {
     var dbClient = await db;
     int res = await dbClient.insert(
       table,
       user.toMap(),
     );
     return res;
-  }
+  }*/
 
   //Login
-  Future<User> login(var phoneOrEmail, String password) async {
+  /*Future<User> login(var username, String password) async {
     var dbClient = await db;
     List<String> columnsToSelect = [
       DatabaseHelper.columnId,
@@ -80,7 +77,7 @@ class DatabaseHelper {
       DatabaseHelper.columnPassword
     ];
     String whereString =
-        '(${DatabaseHelper.columnEmail} = $phoneOrEmail OR ${DatabaseHelper.columnPhoneNumber} = $phoneOrEmail) AND ${DatabaseHelper.columnPassword} = $password';
+        '(${DatabaseHelper.columnEmail} = $username OR ${DatabaseHelper.columnPhoneNumber} = $username) AND ${DatabaseHelper.columnPassword} = $password';
     int rowId = 1;
     List<dynamic> whereArguments = [rowId];
     List<Map> result = await dbClient.query(
@@ -91,5 +88,5 @@ class DatabaseHelper {
     );
     User user = User.map(result);
     return user;
-  }
+  }*/
 }
