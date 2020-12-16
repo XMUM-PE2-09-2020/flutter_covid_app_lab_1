@@ -9,10 +9,9 @@ void main() {
 }
 
 final routes = {
-  './login': (BuildContext context) => LoginScreen(),
-  './register': (BuildContext context) => SignUpScreen(),
-  './home': (BuildContext context) => HomeController(),
-  './': (BuildContext context) => LoginScreen()
+  '/login': (BuildContext context) => LoginScreen(),
+  '/register': (BuildContext context) => SignUpScreen(),
+  '/home': (BuildContext context) => HomeController(),
 };
 
 class MyApp extends StatelessWidget {
@@ -22,6 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Covid App',
+      routes: routes,
       theme: ThemeData(
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,

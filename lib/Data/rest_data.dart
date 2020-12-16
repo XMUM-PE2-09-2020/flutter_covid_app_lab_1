@@ -22,7 +22,7 @@ class RestData {
       'SELECT * FROM ${DatabaseHelper.table} WHERE ${DatabaseHelper.columnUsername} = ? AND ${DatabaseHelper.columnPassword} = ?',
       [username, password],
     );
-    User user = User.map(result.first
+    User user = User.map(result.first);
     return user;
   }
 }

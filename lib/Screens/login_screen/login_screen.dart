@@ -139,6 +139,6 @@ class _LoginScreenState extends State<LoginScreen>
     setState(() {
       isLoading = false;
     });
-    Navigator.of(context).pushNamed("/home");
+    Navigator.of(context).pushNamed('/home');
   }
 }
