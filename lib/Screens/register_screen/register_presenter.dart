@@ -8,7 +8,7 @@ abstract class RegisterPageContruct {
 
 class RegisterPagePresenter {
   RegisterPageContruct _view;
-  RestData api = new RestData();
+  RestData api = RestData();
   RegisterPagePresenter(this._view);
 
   doRegister(User user) {

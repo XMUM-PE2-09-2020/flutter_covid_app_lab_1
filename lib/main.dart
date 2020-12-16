@@ -12,6 +12,7 @@ final routes = {
   '/login': (BuildContext context) => LoginScreen(),
   '/register': (BuildContext context) => SignUpScreen(),
   '/home': (BuildContext context) => HomeController(),
+  '/': (BuildContext context) => LoginScreen()
 };
 
 class MyApp extends StatelessWidget {
@@ -26,7 +27,6 @@ class MyApp extends StatelessWidget {
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: LoginScreen(),
     );
   }
 }

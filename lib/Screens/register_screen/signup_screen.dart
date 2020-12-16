@@ -4,7 +4,6 @@ import 'package:flutter_covid_app_lab_1/Screens/login_screen/components/logo_nam
 import 'package:flutter_covid_app_lab_1/Screens/login_screen/components/no_account.dart';
 import 'package:flutter_covid_app_lab_1/Screens/login_screen/components/rounded_buttons.dart';
 import 'package:flutter_covid_app_lab_1/Screens/login_screen/components/rounded_input_field.dart';
-import 'package:flutter_covid_app_lab_1/Screens/login_screen/login_screen.dart';
 import 'package:flutter_covid_app_lab_1/Screens/register_screen/register_presenter.dart';
 import 'components/or_divider.dart';
 import 'components/social_icon.dart';
@@ -110,14 +109,7 @@ class _SignUpScreenState extends State<SignUpScreen>
                   NoAccount(
                     login: false,
                     press: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return LoginScreen();
-                          },
-                        ),
-                      );
+                      Navigator.of(context).pushNamed('/login');
                     },
                   ),
                   OrDivider(),

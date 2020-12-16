@@ -8,7 +8,7 @@ abstract class LoginPageContract {
 
 class LoginPagePresenter {
   LoginPageContract _view;
-  RestData api = new RestData();
+  RestData api = RestData();
   LoginPagePresenter(this._view);
 
   doLogin(String phoneOrEmail, String password) {
