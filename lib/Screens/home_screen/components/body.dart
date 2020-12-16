@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_covid_app_lab_1/Screens/home_screen/statistics.dart';
 import 'package:flutter_covid_app_lab_1/Screens/prevention/prevention.dart';
 import 'package:flutter_covid_app_lab_1/Screens/self_check/self_check.dart';
 import 'package:flutter_covid_app_lab_1/constants.dart';
@@ -126,7 +127,16 @@ class Body extends StatelessWidget {
                       ItemCard(
                         image: "assets/images/statistics.png",
                         text: 'Statistics',
-                        press: () {},
+                        press: () {
+                           Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return Statistics();
+                              },
+                            ),
+                          );
+                        },
                       ),
                       ItemCard(
                         image: "assets/images/contacts.png",
