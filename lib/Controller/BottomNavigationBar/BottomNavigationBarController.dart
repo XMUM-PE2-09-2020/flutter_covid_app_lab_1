@@ -18,23 +18,53 @@ class _BottomNavigationBarControllerState
     QRScreen(
       key: PageStorageKey('QRScreen'),
     ),
+    QRScreen(
+      key: PageStorageKey('QRScreen'),
+    ),
+    QRScreen(
+      key: PageStorageKey('QRScreen'),
+    ),
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
 
   int _selectedIndex = 0;
 
+  // Widget _bottomNavigationBar(int selectedIndex) => BottomNavigationBar(
+  //       onTap: (int index) => setState(() => _selectedIndex = index),
+  //       currentIndex: selectedIndex,
+  //       items: const <BottomNavigationBarItem>[
+  //         BottomNavigationBarItem(
+  //           icon: Icon(Icons.home),
+  //           label: "Home",
+  //         ),
+  //         BottomNavigationBarItem(
+  //           icon: Icon(Icons.qr_code),
+  //           label: "QR Code",
+  //         ),
+  //       ],
+  //     );
+
   Widget _bottomNavigationBar(int selectedIndex) => BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         onTap: (int index) => setState(() => _selectedIndex = index),
         currentIndex: selectedIndex,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: "Home",
+            title: Text('Home'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.qr_code),
-            label: "QR Code",
+            icon: Icon(Icons.code),
+            title: Text('QR Code'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications),
+            title: Text('Notification'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            title: Text('Settings'),
           ),
         ],
       );
