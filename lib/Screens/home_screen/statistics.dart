@@ -23,6 +23,9 @@ class _StatisticsState extends State<Statistics> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Statistics"),
+      ),
       body:SafeArea(child: GroupedBarChart.withSampleData(Covid19VM.of(context, true).covid19weekModel))
     );
   }
