@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_covid_app_lab_1/Screens/home_screen/home_screen.dart';
+import 'package:flutter_covid_app_lab_1/Screens/notify_screen/notify_screen.dart';
 import 'package:flutter_covid_app_lab_1/Screens/qrcode_screen/qrcode_screen.dart';
 
 //Author: Ting Sen
@@ -18,8 +19,8 @@ class _BottomNavigationBarControllerState
     QRScreen(
       key: PageStorageKey('QRScreen'),
     ),
-    QRScreen(
-      key: PageStorageKey('QRScreen'),
+    NotifyScreen(
+      key: PageStorageKey('NotifyScreen'),
     ),
     QRScreen(
       key: PageStorageKey('QRScreen'),
