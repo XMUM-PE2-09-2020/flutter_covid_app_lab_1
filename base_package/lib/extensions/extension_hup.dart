@@ -1,4 +1,4 @@
-import 'package:flustars/flustars.dart';
+// import 'package:flustars/flustars.dart';
 
 extension FormatterString on String {
   bool verifyPhone() {
@@ -48,7 +48,7 @@ extension FormatterString on String {
 }
 
 extension Screen on num {
-  num get sp => ScreenUtil.getInstance().getSp(this.toDouble());
-  double get w => ScreenUtil.getInstance().getWidth(this.toDouble());
-  double get h => ScreenUtil.getInstance().getHeight(this.toDouble());
+  // num get sp => ScreenUtil.getInstance().getSp(this.toDouble());
+  // double get w => ScreenUtil.getInstance().getWidth(this.toDouble());
+  // double get h => ScreenUtil.getInstance().getHeight(this.toDouble());
 }

@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:base_package/constant/textstyle.dart';
-import 'package:base_package/uikit/common_widget.dart';
-import 'package:base_package/utils/utils.dart';
+// import 'package:base_package/constant/textstyle.dart';
+// import 'package:base_package/uikit/common_widget.dart';
+// import 'package:base_package/utils/utils.dart';
 import 'dart:math' as math show sin, pi;
 
 enum LoadingType { tip, loading }
@@ -16,8 +16,8 @@ class HXLoading {
   static final HXLoading _instance = HXLoading._singleton();
   HXLoading._singleton();
 
-  static OverlayState get overlayState =>
-      Utils.navigatorKey.currentState.overlay;
+  // static OverlayState get overlayState =>
+  //     Utils.navigatorKey.currentState.overlay;
 
   static OverlayEntryOb _overlayOb;
 
@@ -71,7 +71,7 @@ class HXLoading {
     ));
     if (type == LoadingType.tip) {
       _overlayOb.state = OverlayEntryState.display;
-      overlayState.insert(_overlayOb.entry);
+      // overlayState.insert(_overlayOb.entry);
       autoDissmiss(duration);
     } else {
       //当类型为LoadingType.loading，优雅展示，网络加载控件低于110ms不展示控件
@@ -88,7 +88,7 @@ class HXLoading {
     _timerShow = Timer(dura, () {
       if (_overlayOb.state == OverlayEntryState.queuing) {
         _overlayOb.state = OverlayEntryState.display;
-        overlayState.insert(_overlayOb.entry);
+        // overlayState.insert(_overlayOb.entry);
       }
     });
   }
@@ -154,7 +154,7 @@ class HXLoading {
             ),
             Text(
               msg ?? '数据加载中...',
-              style: pingFangM(12, color: Color(0xFF666666)),
+              // style: pingFangM(12, color: Color(0xFF666666)),
             )
           ]),
     );
@@ -176,7 +176,7 @@ class HXLoading {
           child: Text(
             text,
             textAlign: TextAlign.center,
-            style: pingFangM(13, color: color ?? Colors.white),
+            // style: pingFangM(13, color: color ?? Colors.white),
           ),
         )
       ],
@@ -189,7 +189,7 @@ class HXLoading {
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style: pingFangM(13, color: color ?? Colors.white),
+          // style: pingFangM(13, color: color ?? Colors.white),
         ));
   }
 
