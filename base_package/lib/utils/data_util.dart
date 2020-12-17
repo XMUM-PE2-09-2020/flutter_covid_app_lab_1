@@ -176,6 +176,55 @@ class DateUtil {
         : weekday.substring(0, short ? 3 : weekday.length);
   }
 
+  static String getMonth(DateTime dateTime,
+      {String languageCode = 'en', bool short = false}) {
+    if (dateTime == null) return null;
+    String month;
+    switch (dateTime.month) {
+      case 1:
+        month = languageCode == 'zh' ? '一月' : "January";
+        break;
+      case 2:
+        month = languageCode == 'zh' ? '二月' : "February";
+        break;
+      case 3:
+        month = languageCode == 'zh' ? '三月' : "March";
+        break;
+      case 4:
+        month = languageCode == 'zh' ? '四月' : "April";
+        break;
+      case 5:
+        month = languageCode == 'zh' ? '五月' : "May";
+        break;
+      case 6:
+        month = languageCode == 'zh' ? '六月' : "June";
+        break;
+      case 7:
+        month = languageCode == 'zh' ? '七月' : "July";
+        break;
+        case 8:
+        month = languageCode == 'zh' ? '八月' : "August";
+        break;
+        case 9:
+        month = languageCode == 'zh' ? '九月' : "September";
+        break;
+        case 10:
+        month = languageCode == 'zh' ? '十月' : "October";
+        break;
+        case 11:
+        month = languageCode == 'zh' ? '十一月' : "November";
+        break;
+        case 12:
+        month = languageCode == 'zh' ? '十二月' : "December";
+        break;
+      default:
+        break;
+    }
+    return languageCode == 'zh'
+        ? (short ? month.replaceAll('月', '') : month)
+        : month.substring(0, short ? 3 : month.length);
+  }
+
   /// get WeekDay By Milliseconds.
   static String getWeekdayByMs(int milliseconds,
       {bool isUtc = false, String languageCode, bool short = false}) {
