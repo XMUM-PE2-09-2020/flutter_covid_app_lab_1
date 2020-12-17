@@ -4,7 +4,6 @@ import 'package:flutter_covid_app_lab_1/model/covid19_notify_model.dart';
 import 'package:flutter_covid_app_lab_1/model/covid19_total_model.dart';
 import 'package:flutter_covid_app_lab_1/model/covid19_week_model.dart';
 import 'package:provider/provider.dart';
-import 'package:base_package/api/api_test.dart';
 import 'package:base_package/http/http_handler.dart';
 import 'package:flutter_covid_app_lab_1/api/api_covid19.dart';
 class Covid19VM extends BaseVM {
