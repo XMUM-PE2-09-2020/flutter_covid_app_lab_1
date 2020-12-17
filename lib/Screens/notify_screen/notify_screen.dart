@@ -22,7 +22,7 @@ class _NotifyScreenState extends State<NotifyScreen> {
   }
 
   void countdown() {
-    timer = new Timer.periodic(new Duration(minutes: 5), (timer) {
+    timer = new Timer.periodic(new Duration(seconds: 5), (timer) {
       Covid19VM.of(context).covid19NotifyGet();
     });
   }
