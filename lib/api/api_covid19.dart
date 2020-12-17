@@ -13,5 +13,17 @@ class Covid19WeekApi extends HttpBaseApi {
   }
 }
 
+class Covid19TotalApi extends HttpBaseApi {
+  @override
+  String path() {
+    return '/v1/summary/region';
+  }
+
+  @override
+  HttpMethord methord() {
+    return HttpMethord.http_get;
+  }
+}
+
 
 

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_covid_app_lab_1/Screens/home_screen/grouped_chart.dart';
 import 'package:flutter_covid_app_lab_1/vms/vm_covid19.dart';
+import 'package:charts_flutter/flutter.dart';
 
 class Statistics extends StatefulWidget {
   @override
@@ -14,16 +16,14 @@ class _StatisticsState extends State<Statistics> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      print("1111");
       Covid19VM.of(context).covid19WeedGet().then((value){
-        print("222");
       });
     });
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Container()
+      body:SafeArea(child: GroupedBarChart.withSampleData(Covid19VM.of(context, true).covid19weekModel))
     );
   }
 }
