@@ -31,44 +31,51 @@ class _BottomNavigationBarControllerState
 
   int _selectedIndex = 0;
 
-  // Widget _bottomNavigationBar(int selectedIndex) => BottomNavigationBar(
-  //       onTap: (int index) => setState(() => _selectedIndex = index),
-  //       currentIndex: selectedIndex,
-  //       items: const <BottomNavigationBarItem>[
-  //         BottomNavigationBarItem(
-  //           icon: Icon(Icons.home),
-  //           label: "Home",
-  //         ),
-  //         BottomNavigationBarItem(
-  //           icon: Icon(Icons.qr_code),
-  //           label: "QR Code",
-  //         ),
-  //       ],
-  //     );
-
   Widget _bottomNavigationBar(int selectedIndex) => BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
         onTap: (int index) => setState(() => _selectedIndex = index),
         currentIndex: selectedIndex,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('Home'),
+            label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.code),
-            title: Text('QR Code'),
+            icon: Icon(Icons.qr_code),
+            label: "QR Code",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
-            title: Text('Notification'),
+            label: "Notification",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            title: Text('Settings'),
+            label: "Settings",
           ),
         ],
       );
+  // Widget _bottomNavigationBar(int selectedIndex) => BottomNavigationBar(
+  //       type: BottomNavigationBarType.fixed,
+  //       onTap: (int index) => setState(() => _selectedIndex = index),
+  //       currentIndex: selectedIndex,
+  //       items: const <BottomNavigationBarItem>[
+  //         BottomNavigationBarItem(
+  //           icon: Icon(Icons.home),
+  //           title: Text('Home'),
+  //         ),
+  //         BottomNavigationBarItem(
+  //           icon: Icon(Icons.code),
+  //           title: Text('QR Code'),
+  //         ),
+  //         BottomNavigationBarItem(
+  //           icon: Icon(Icons.notifications),
+  //           title: Text('Notification'),
+  //         ),
+  //         BottomNavigationBarItem(
+  //           icon: Icon(Icons.settings),
+  //           title: Text('Settings'),
+  //         ),
+  //       ],
+  //     );
 
   @override
   Widget build(BuildContext context) {
