@@ -1,4 +1,4 @@
-import 'package:base_package/utils/data_util.dart';
+import 'package:flutter_covid_app_lab_1/utils/data_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_covid_app_lab_1/Screens/home_screen/statistics.dart';
 import 'package:flutter_covid_app_lab_1/Screens/prevention/prevention.dart';

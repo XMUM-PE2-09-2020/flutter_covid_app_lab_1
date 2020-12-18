@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter_covid_app_lab_1/model/covid19_week_model.dart';
-import 'package:base_package/utils/data_util.dart';
+import 'package:flutter_covid_app_lab_1/utils/data_util.dart';
 class GroupedBarChart extends StatelessWidget {
   final List<charts.Series> seriesList;
   final bool animate;

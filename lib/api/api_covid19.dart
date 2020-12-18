@@ -1,5 +1,5 @@
 
-import 'package:base_package/api/api_base.dart';
+import 'package:flutter_covid_app_lab_1/api/api_base.dart';
 
 class Covid19WeekApi extends HttpBaseApi {
   @override

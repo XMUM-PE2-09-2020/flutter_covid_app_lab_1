@@ -31,8 +31,9 @@ dependencies:
   toast: ^0.1.5
   flutter_svg: 0.17.4
   charts_flutter: ^0.9.0
-  base_package:
-    path: base_package/
+  dio: ^3.0.9
+  provider: ^4.3.2+2
+
 
 dev_dependencies:
   flutter_test:
