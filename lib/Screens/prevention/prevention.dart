@@ -60,24 +60,27 @@ class _PreventionState extends State<Prevention> {
                   SizedBox(width: 20),
                   Container(
                       width: 90,
-                      child: _page == 3
-                          ? FlatButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20)),
-                              color: Color.fromRGBO(10, 84, 255, 1.0),
-                              splashColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: Text(
-                                'Next',
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500),
-                              ))
-                          : null),
+                      child: FlatButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          color: Color.fromRGBO(10, 84, 255, 1.0),
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onPressed: () {
+                            if (_page < 3) {
+                              _page += 1;
+                              _controller.jumpToPage(_page);
+                            } else {
+                              Navigator.of(context).pop();
+                            }
+                          },
+                          child: Text(
+                            'Next',
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500),
+                          ))),
                 ],
               ))
         ],
