@@ -32,6 +32,7 @@ class _BottomNavigationBarControllerState
   int _selectedIndex = 0;
 
   Widget _bottomNavigationBar(int selectedIndex) => BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         onTap: (int index) => setState(() => _selectedIndex = index),
         currentIndex: selectedIndex,
         items: const <BottomNavigationBarItem>[
@@ -53,29 +54,6 @@ class _BottomNavigationBarControllerState
           ),
         ],
       );
-  // Widget _bottomNavigationBar(int selectedIndex) => BottomNavigationBar(
-  //       type: BottomNavigationBarType.fixed,
-  //       onTap: (int index) => setState(() => _selectedIndex = index),
-  //       currentIndex: selectedIndex,
-  //       items: const <BottomNavigationBarItem>[
-  //         BottomNavigationBarItem(
-  //           icon: Icon(Icons.home),
-  //           title: Text('Home'),
-  //         ),
-  //         BottomNavigationBarItem(
-  //           icon: Icon(Icons.code),
-  //           title: Text('QR Code'),
-  //         ),
-  //         BottomNavigationBarItem(
-  //           icon: Icon(Icons.notifications),
-  //           title: Text('Notification'),
-  //         ),
-  //         BottomNavigationBarItem(
-  //           icon: Icon(Icons.settings),
-  //           title: Text('Settings'),
-  //         ),
-  //       ],
-  //     );
 
   @override
   Widget build(BuildContext context) {
