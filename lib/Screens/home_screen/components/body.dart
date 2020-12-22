@@ -91,28 +91,14 @@ class Body extends StatelessWidget {
                         image: "assets/images/self-check.png",
                         text: 'Self-Check',
                         press: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return SelfCheck();
-                              },
-                            ),
-                          );
+                          Navigator.of(context).pushNamed('/self_check');
                         },
                       ),
                       ItemCard(
                         image: "assets/images/prevention.png",
                         text: 'Prevention',
                         press: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return Prevention();
-                              },
-                            ),
-                          );
+                          Navigator.of(context).pushNamed('/prevention');
                         },
                       ),
                       ItemCard(
@@ -131,14 +117,7 @@ class Body extends StatelessWidget {
                         image: "assets/images/statistics.png",
                         text: 'Statistics',
                         press: () {
-                           Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return Statistics();
-                              },
-                            ),
-                          );
+                           Navigator.of(context).pushNamed('/statistics');
                         },
                       ),
                       ItemCard(
