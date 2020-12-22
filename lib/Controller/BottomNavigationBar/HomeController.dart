@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_covid_app_lab_1/Screens/home_screen/home_screen.dart';
+import 'package:flutter_covid_app_lab_1/Screens/notify_screen/notify_screen.dart';
 import 'package:flutter_covid_app_lab_1/Screens/qrcode_screen/qrcode_screen.dart';
 
 //Author: Ting Sen
@@ -18,6 +19,12 @@ class _HomeControllerState
     QRScreen(
       key: PageStorageKey('QRScreen'),
     ),
+    NotifyScreen(
+      key: PageStorageKey('NotifyScreen'),
+    ),
+    QRScreen(
+      key: PageStorageKey('QRScreen'),
+    ),
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
@@ -25,6 +32,7 @@ class _HomeControllerState
   int _selectedIndex = 0;
 
   Widget _bottomNavigationBar(int selectedIndex) => BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         onTap: (int index) => setState(() => _selectedIndex = index),
         currentIndex: selectedIndex,
         items: const <BottomNavigationBarItem>[
@@ -35,6 +43,14 @@ class _HomeControllerState
           BottomNavigationBarItem(
             icon: Icon(Icons.qr_code),
             label: "QR Code",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications),
+            label: "Notification",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: "Settings",
           ),
         ],
       );

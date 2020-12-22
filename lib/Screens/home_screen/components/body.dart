@@ -1,6 +1,10 @@
+import 'package:flutter_covid_app_lab_1/utils/data_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_covid_app_lab_1/Screens/home_screen/statistics.dart';
+import 'package:flutter_covid_app_lab_1/Screens/prevention/prevention.dart';
 import 'package:flutter_covid_app_lab_1/Screens/self_check/self_check.dart';
 import 'package:flutter_covid_app_lab_1/constants.dart';
+import 'package:flutter_covid_app_lab_1/vms/vm_covid19.dart';
 import 'background.dart';
 import 'item_card.dart';
 
@@ -47,9 +51,10 @@ class Body extends StatelessWidget {
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          'Last updated on 20 Oct 2020',
+                          'Last updated on ${DateTime.now().day} ${DateUtil.getMonth(DateTime.now(), short:true)} ${DateTime.now().year}',
                           style: TextStyle(
                             color: Colors.white,
+                            fontSize: 10
                           ),
                         ),
                       ],
@@ -60,19 +65,19 @@ class Body extends StatelessWidget {
                       ItemCard(
                         image: "assets/images/confirmed.png",
                         text: 'Confirmed',
-                        number: '8960',
+                        number: Covid19VM.of(context, true).covid19totalModel?.data?.summary?.totalCases?.toString()?? "0",
                         press: () {},
                       ),
                       ItemCard(
                         image: "assets/images/recovered.png",
                         text: 'Recovered',
-                        number: '3221',
+                        number: Covid19VM.of(context, true).covid19totalModel?.data?.summary?.recovered?.toString()?? "0",
                         press: () {},
                       ),
                       ItemCard(
                         image: "assets/images/death.png",
                         text: 'Death',
-                        number: '169',
+                        number: Covid19VM.of(context, true).covid19totalModel?.data?.summary?.deaths?.toString()?? "0",
                         press: () {},
                       ),
                     ],
@@ -99,7 +104,16 @@ class Body extends StatelessWidget {
                       ItemCard(
                         image: "assets/images/prevention.png",
                         text: 'Prevention',
-                        press: () {},
+                        press: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return Prevention();
+                              },
+                            ),
+                          );
+                        },
                       ),
                       ItemCard(
                         image: "assets/images/nearby.png",
@@ -116,7 +130,16 @@ class Body extends StatelessWidget {
                       ItemCard(
                         image: "assets/images/statistics.png",
                         text: 'Statistics',
-                        press: () {},
+                        press: () {
+                           Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return Statistics();
+                              },
+                            ),
+                          );
+                        },
                       ),
                       ItemCard(
                         image: "assets/images/contacts.png",
