@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_covid_app_lab_1/Models/user.dart';
+import 'package:flutter_covid_app_lab_1/model/user.dart';
 import 'package:flutter_covid_app_lab_1/Screens/login_screen/components/logo_name_and_slogan.dart';
 import 'package:flutter_covid_app_lab_1/Screens/login_screen/components/no_account.dart';
 import 'package:flutter_covid_app_lab_1/Screens/login_screen/components/rounded_buttons.dart';
 import 'package:flutter_covid_app_lab_1/Screens/login_screen/components/rounded_input_field.dart';
 import 'package:flutter_covid_app_lab_1/Screens/register_screen/register_presenter.dart';
+import 'package:flutter_session/flutter_session.dart';
 import 'components/or_divider.dart';
 import 'components/social_icon.dart';
 
@@ -23,13 +24,14 @@ class _SignUpScreenState extends State<SignUpScreen>
   bool isLoading = false;
   String _username, _email, _password;
   int _phoneNumber;
-  RegisterPagePresenter _presenter;
+  RegisterPagePresenter _registerPresenter;
+  User _user;
 
   @override
   void initState() {
     super.initState();
     isLoading = false;
-    _presenter = RegisterPagePresenter(this);
+    _registerPresenter = RegisterPagePresenter(this);
   }
 
   void _showSnackBar(String text) {
@@ -49,8 +51,8 @@ class _SignUpScreenState extends State<SignUpScreen>
           setState(() {
             isLoading = true;
             formKey.currentState.save();
-            User _user = User(_username, _password, _email, _phoneNumber);
-            _presenter.doRegister(_user);
+            _user = User(_username, _password, _email, _phoneNumber);
+            _registerPresenter.doRegister(_user);
           });
         }
       },
@@ -157,11 +159,23 @@ class _SignUpScreenState extends State<SignUpScreen>
   }
 
   @override
-  void onRegisterSuccess(int res) {
-    _showSnackBar(res.toString());
-    print(res.toString());
-    setState(() {
-      isLoading = false;
-    });
+  Future<void> onRegisterSuccess(bool res) async {
+    if (res == true) {
+      _showSnackBar(_user.username.toString() + ' signed up successfully.');
+      await FlutterSession().set("token", _user);
+
+      setState(() {
+        isLoading = false;
+      });
+
+      Future.delayed(
+          Duration(seconds: 1), () => Navigator.of(context).pushNamed('/home'));
+    } else {
+      _showSnackBar('Sign up failed. Username existed.');
+
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter_covid_app_lab_1/Data/rest_data.dart';
-import 'package:flutter_covid_app_lab_1/Models/user.dart';
+import 'package:flutter_covid_app_lab_1/model/user.dart';
 
 abstract class RegisterPageContruct {
-  void onRegisterSuccess(int res);
+  Future<void> onRegisterSuccess(bool res);
   void onRegisterError(Error error);
 }
 

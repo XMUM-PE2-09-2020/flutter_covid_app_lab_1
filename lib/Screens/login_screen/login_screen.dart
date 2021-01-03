@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_covid_app_lab_1/Models/user.dart';
+import 'package:flutter_covid_app_lab_1/model/user.dart';
+import 'package:flutter_session/flutter_session.dart';
 
 import 'components/logo_name_and_slogan.dart';
 import 'components/no_account.dart';
@@ -118,19 +119,20 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   void onLoginError(Error error) {
-    _showSnackBar(error.toString());
+    _showSnackBar("Login failed.");
+    print(error.toString());
     setState(() {
       isLoading = false;
     });
-    print(error.toString());
   }
 
   @override
-  void onLoginSuccess(User user) {
-    _showSnackBar(user.toString());
+  Future<void> onLoginSuccess(User user) async {
+    _showSnackBar(user.username.toString() + ' logged in susccessfully.');
+    await FlutterSession().set("token", user);
     setState(() {
       isLoading = false;
     });
-    Navigator.of(context).pushNamed('/home');
+    Future.delayed(Duration(seconds: 1), () => Navigator.of(context).pushNamed('/home'));
   }
 }

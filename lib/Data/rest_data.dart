@@ -1,4 +1,4 @@
-import 'package:flutter_covid_app_lab_1/Models/user.dart';
+import 'package:flutter_covid_app_lab_1/model/user.dart';
 import 'database_helper.dart';
 
 //Author: Ting Sen
@@ -7,13 +7,24 @@ class RestData {
   static final baseUrl = "";
   static final loginUrl = baseUrl + "/";
 
-  Future<int> createUser(User user) async {
+  Future<bool> createUser(User user) async {
     var dbClient = await databaseHelper.db;
-    int res = await dbClient.insert(
-      DatabaseHelper.table,
-      user.toMap(),
+
+    var query = await dbClient.rawQuery(
+      'SELECT * FROM ${DatabaseHelper.table} WHERE ${DatabaseHelper.columnUsername} = ?',
+      [user.username],
     );
-    return res;
+
+    if (query.isNotEmpty) {
+      return false;
+    }
+
+    await dbClient.insert(
+      DatabaseHelper.table,
+      user.toJson(),
+    );
+
+    return true;
   }
 
   Future<User> login(String username, String password) async {

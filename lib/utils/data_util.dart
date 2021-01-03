@@ -10,27 +10,27 @@
 /// year -> yyyy/yy   month -> MM/M    day -> dd/d
 /// hour -> HH/H      minute -> mm/m   second -> ss/s
 class DateFormats {
-  static String full = "yyyy-MM-dd HH:mm:ss";
-  static String y_mo_d_h_m = "yyyy-MM-dd HH:mm";
-  static String y_mo_d = "yyyy-MM-dd";
-  static String y_mo = "yyyy-MM";
-  static String mo_d = "MM-dd";
-  static String mo_d_h_m = "MM-dd HH:mm";
-  static String h_m_s = "HH:mm:ss";
-  static String h_m = "HH:mm";
+  static const String full = "yyyy-MM-dd HH:mm:ss";
+  static const String y_mo_d_h_m = "yyyy-MM-dd HH:mm";
+  static const String y_mo_d = "yyyy-MM-dd";
+  static const String y_mo = "yyyy-MM";
+  static const String mo_d = "MM-dd";
+  static const String mo_d_h_m = "MM-dd HH:mm";
+  static const String h_m_s = "HH:mm:ss";
+  static const String h_m = "HH:mm";
 
-  static String zh_full = "yyyy年MM月dd日 HH时mm分ss秒";
-  static String zh_y_mo_d_h_m = "yyyy年MM月dd日 HH时mm分";
-  static String zh_y_mo_d = "yyyy年MM月dd日";
-  static String zh_y_mo = "yyyy年MM月";
-  static String zh_mo_d = "MM月dd日";
-  static String zh_mo_d_h_m = "MM月dd日 HH时mm分";
-  static String zh_h_m_s = "HH时mm分ss秒";
-  static String zh_h_m = "HH时mm分";
+  static const String zh_full = "yyyy年MM月dd日 HH时mm分ss秒";
+  static const String zh_y_mo_d_h_m = "yyyy年MM月dd日 HH时mm分";
+  static const String zh_y_mo_d = "yyyy年MM月dd日";
+  static const String zh_y_mo = "yyyy年MM月";
+  static const String zh_mo_d = "MM月dd日";
+  static const String zh_mo_d_h_m = "MM月dd日 HH时mm分";
+  static const String zh_h_m_s = "HH时mm分ss秒";
+  static const String zh_h_m = "HH时mm分";
 }
 
 /// month->days.
-Map<int, int> MONTH_DAY = {
+Map<int, int> monthDay = {
   1: 31,
   2: 28,
   3: 31,
@@ -239,7 +239,7 @@ class DateUtil {
     int month = dateTime.month;
     int days = dateTime.day;
     for (int i = 1; i < month; i++) {
-      days = days + MONTH_DAY[i];
+      days = days + monthDay[i];
     }
     if (isLeapYearByYear(year) && month > 2) {
       days = days + 1;

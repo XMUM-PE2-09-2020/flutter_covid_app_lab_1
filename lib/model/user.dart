@@ -19,7 +19,7 @@ class User {
   String get email => _email;
   int get phoneNumber => _phoneNumber;
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     var map = new Map<String, dynamic>();
     map['username'] = _username;
     map['password'] = _password;

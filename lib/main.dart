@@ -9,6 +9,7 @@ import 'package:flutter_covid_app_lab_1/Screens/qrcode_screen/qrcode_screen.dart
 import 'package:flutter_covid_app_lab_1/Screens/register_screen/signup_screen.dart';
 import 'package:flutter_covid_app_lab_1/Screens/self_check/self_check.dart';
 import 'package:flutter_covid_app_lab_1/Screens/travelhistory_screen/travelhistory_screen.dart';
+import 'package:flutter_covid_app_lab_1/Screens/contact_screen/contact_screen.dart';
 import 'package:flutter_covid_app_lab_1/constants.dart';
 import 'package:flutter_covid_app_lab_1/vms/vm_covid19.dart';
 import 'package:provider/provider.dart';
@@ -28,6 +29,7 @@ final routes = {
   '/prevention': (BuildContext context) => Prevention(),
   '/notify': (BuildContext context) => NotifyScreen(),
   '/statistics': (BuildContext context) => Statistics(),
+  '/contact': (BuildContext context) => ContactScreen(),
   '/': (BuildContext context) => LoginScreen()
 };
 

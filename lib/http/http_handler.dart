@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_covid_app_lab_1/api/api_base.dart';
-import 'package:dio/dio.dart';
 
 typedef InterceptorCallBak = dynamic Function(dynamic response);
 typedef SendCallBak = Future<dynamic> Function(dynamic response);
