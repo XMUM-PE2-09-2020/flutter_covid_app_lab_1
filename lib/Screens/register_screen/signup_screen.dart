@@ -45,6 +45,7 @@ class _SignUpScreenState extends State<SignUpScreen>
     Size size = MediaQuery.of(context).size;
 
     var registerBtn = RoundedButton(
+      key: Key('signup_button'),
       text: "REGISTER",
       press: () {
         if (formKey.currentState.validate()) {
@@ -63,21 +64,25 @@ class _SignUpScreenState extends State<SignUpScreen>
       child: Column(
         children: [
           RoundedInputField(
+            key: Key('signup_phone_input_field'),
             icon: Icons.phone,
             hintText: "Phone Number",
             onSaved: (value) => _phoneNumber = int.parse(value),
           ),
           RoundedInputField(
+            key: Key('signup_email_input_field'),
             icon: Icons.email,
             hintText: "Email Address",
             onSaved: (value) => _email = value,
           ),
           RoundedInputField(
+            key: Key('signup_username_input_field'),
             icon: Icons.person,
             hintText: "Username",
             onSaved: (value) => _username = value,
           ),
           RoundedInputField(
+            key: Key('signup_password_input_field'),
             obscureText: true,
             icon: Icons.lock,
             hintText: "Password",

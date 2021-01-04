@@ -43,6 +43,7 @@ class _LoginScreenState extends State<LoginScreen>
       child: Column(
         children: [
           RoundedInputField(
+            key: Key('login_username_input_field'),
             icon: Icons.person,
             hintText: "Username",
             onSaved: (value) => _username = value,
@@ -54,6 +55,7 @@ class _LoginScreenState extends State<LoginScreen>
             },
           ),
           RoundedInputField(
+            key: Key('login_password_input_field'),
             obscureText: true,
             icon: Icons.lock,
             hintText: "Password",
@@ -71,6 +73,7 @@ class _LoginScreenState extends State<LoginScreen>
     );
 
     var loginBtn = RoundedButton(
+      key: Key('login_button'),
       text: "LOGIN",
       press: () {
         if (formKey.currentState.validate()) {
@@ -100,6 +103,7 @@ class _LoginScreenState extends State<LoginScreen>
                 loginForm,
                 loginBtn,
                 NoAccount(
+                  key: Key('redirect_to_signup_button'),
                   press: () {
                     Navigator.of(context).pushNamed('/register');
                   },
