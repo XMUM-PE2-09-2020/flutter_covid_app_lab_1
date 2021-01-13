@@ -38,14 +38,15 @@ class Body extends StatelessWidget {
                           builder:
                               (BuildContext context, AsyncSnapshot snapshot) {
                             return Text(
-                                snapshot.hasData
-                                    ? "Welcome, " + snapshot.data['username']
-                                    : "Loading...",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 30,
-                                ));
+                              snapshot.hasData
+                                  ? "Welcome, " + snapshot.data['username']
+                                  : "Loading...",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30,
+                              ),
+                            );
                           },
                         ),
                         SizedBox(
@@ -127,7 +128,9 @@ class Body extends StatelessWidget {
                       ItemCard(
                         image: "assets/images/nearby.png",
                         text: 'Nearby',
-                        press: () {},
+                        press: () {
+                          Navigator.of(context).pushNamed('/nearby');
+                        },
                       ),
                     ],
                   ),

@@ -59,36 +59,40 @@ class _SignUpScreenState extends State<SignUpScreen>
       },
     );
 
-    var registerForm = Form(
+    final phoneNumberField = RoundedInputField(
+      key: Key('signup_phone_input_field'),
+      icon: Icons.phone,
+      hintText: "Phone Number",
+      onSaved: (value) => _phoneNumber = int.parse(value),
+    );
+    final emailField = RoundedInputField(
+      key: Key('signup_email_input_field'),
+      icon: Icons.email,
+      hintText: "Email Address",
+      onSaved: (value) => _email = value,
+    );
+    final usernameField = RoundedInputField(
+      key: Key('signup_username_input_field'),
+      icon: Icons.person,
+      hintText: "Username",
+      onSaved: (value) => _username = value,
+    );
+    final passwordField = RoundedInputField(
+      key: Key('signup_password_input_field'),
+      obscureText: true,
+      icon: Icons.lock,
+      hintText: "Password",
+      suffixIcon: Icons.visibility,
+      onSaved: (value) => _password = value,
+    );
+    final registerForm = Form(
       key: formKey,
       child: Column(
         children: [
-          RoundedInputField(
-            key: Key('signup_phone_input_field'),
-            icon: Icons.phone,
-            hintText: "Phone Number",
-            onSaved: (value) => _phoneNumber = int.parse(value),
-          ),
-          RoundedInputField(
-            key: Key('signup_email_input_field'),
-            icon: Icons.email,
-            hintText: "Email Address",
-            onSaved: (value) => _email = value,
-          ),
-          RoundedInputField(
-            key: Key('signup_username_input_field'),
-            icon: Icons.person,
-            hintText: "Username",
-            onSaved: (value) => _username = value,
-          ),
-          RoundedInputField(
-            key: Key('signup_password_input_field'),
-            obscureText: true,
-            icon: Icons.lock,
-            hintText: "Password",
-            suffixIcon: Icons.visibility,
-            onSaved: (value) => _password = value,
-          ),
+          phoneNumberField,
+          emailField,
+          usernameField,
+          passwordField,
         ],
       ),
     );

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_covid_app_lab_1/Controller/BottomNavigationBar/HomeController.dart';
 import 'package:flutter_covid_app_lab_1/Screens/home_screen/statistics.dart';
 import 'package:flutter_covid_app_lab_1/Screens/login_screen/login_screen.dart';
+import 'package:flutter_covid_app_lab_1/Screens/nearby_screen/nearby_screen.dart';
 import 'package:flutter_covid_app_lab_1/Screens/notify_screen/notify_screen.dart';
 import 'package:flutter_covid_app_lab_1/Screens/prevention/prevention.dart';
 import 'package:flutter_covid_app_lab_1/Screens/qrcode_screen/qrcode_screen.dart';
@@ -30,6 +31,7 @@ final routes = {
   '/notify': (BuildContext context) => NotifyScreen(),
   '/statistics': (BuildContext context) => Statistics(),
   '/contact': (BuildContext context) => ContactScreen(),
+  '/nearby': (BuildContext context) => NearbyScreen(),
   '/': (BuildContext context) => LoginScreen()
 };
 

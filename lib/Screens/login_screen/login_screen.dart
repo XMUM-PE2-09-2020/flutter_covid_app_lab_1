@@ -38,42 +38,43 @@ class _LoginScreenState extends State<LoginScreen>
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    var loginForm = Form(
+    final usernameField = RoundedInputField(
+      key: Key('login_username_input_field'),
+      icon: Icons.person,
+      hintText: "Username",
+      onSaved: (value) => _username = value,
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Field required';
+        }
+        return null;
+      },
+    );
+    final passwordField = RoundedInputField(
+      key: Key('login_password_input_field'),
+      obscureText: true,
+      icon: Icons.lock,
+      hintText: "Password",
+      suffixIcon: Icons.visibility,
+      onSaved: (value) => _password = value,
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Field required';
+        }
+        return null;
+      },
+    );
+    final loginForm = Form(
       key: formKey,
       child: Column(
         children: [
-          RoundedInputField(
-            key: Key('login_username_input_field'),
-            icon: Icons.person,
-            hintText: "Username",
-            onSaved: (value) => _username = value,
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Field required';
-              }
-              return null;
-            },
-          ),
-          RoundedInputField(
-            key: Key('login_password_input_field'),
-            obscureText: true,
-            icon: Icons.lock,
-            hintText: "Password",
-            suffixIcon: Icons.visibility,
-            onSaved: (value) => _password = value,
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Field required';
-              }
-              return null;
-            },
-          ),
+          usernameField,
+          passwordField,
         ],
       ),
     );
 
     var loginBtn = RoundedButton(
-      key: Key('login_button'),
       text: "LOGIN",
       press: () {
         if (formKey.currentState.validate()) {
@@ -137,6 +138,7 @@ class _LoginScreenState extends State<LoginScreen>
     setState(() {
       isLoading = false;
     });
-    Future.delayed(Duration(seconds: 1), () => Navigator.of(context).pushNamed('/home'));
+    Future.delayed(
+        Duration(seconds: 1), () => Navigator.of(context).pushNamed('/home'));
   }
 }
