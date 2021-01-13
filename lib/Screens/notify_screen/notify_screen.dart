@@ -29,48 +29,73 @@ class _NotifyScreenState extends State<NotifyScreen> {
 
   @override
   void dispose() {
-    if (timer?.isActive) {
-      timer?.cancel();
+    if (timer != null && timer.isActive) {
+      timer.cancel();
     }
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: ListView.builder(
-            itemBuilder: (context, index) {
-              return Container(
-                child: Card(
-                    child: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                          Column(
+    return Scaffold(
+      backgroundColor: Colors.blue[50],
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: Text('Notification'),
+      ),
+      body: SafeArea(
+          child: ListView.builder(
+              itemBuilder: (context, index) {
+                return Container(
+                  child: Card(
+                      child: Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Text(
-                                    "Area: ${Covid19VM.of(context, true).covid19notifyModel?.locations[index].state}",
-                                    style: TextStyle(color: Colors.black38)),
-                                Text(
-                                    "Confirmed: ${Covid19VM.of(context, true).covid19notifyModel?.locations[index].latest.confirmed}",
-                                    style: TextStyle(color: Colors.black38))
-                              ]),
-                              Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                    "Deaths: ${Covid19VM.of(context, true).covid19notifyModel?.locations[index].latest.deaths}",
-                                    style: TextStyle(color: Colors.black38)),
-                              ])
-                        ]))),
-              );
-            },
-            itemCount:
-                (Covid19VM.of(context, true).covid19notifyModel?.locations?.length ??
-                    0) > 10? 10: (Covid19VM.of(context, true).covid19notifyModel?.locations?.length ??
-                    0)));
+                                Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                          "Area: ${Covid19VM.of(context, true).covid19notifyModel?.locations[index].state}",
+                                          style:
+                                              TextStyle(color: Colors.black38)),
+                                      Text(
+                                          "Confirmed: ${Covid19VM.of(context, true).covid19notifyModel?.locations[index].latest.confirmed}",
+                                          style:
+                                              TextStyle(color: Colors.black38))
+                                    ]),
+                                Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                          "Deaths: ${Covid19VM.of(context, true).covid19notifyModel?.locations[index].latest.deaths}",
+                                          style:
+                                              TextStyle(color: Colors.black38)),
+                                    ])
+                              ]))),
+                );
+              },
+              itemCount: (Covid19VM.of(context, true)
+                              .covid19notifyModel
+                              ?.locations
+                              ?.length ??
+                          0) >
+                      10
+                  ? 10
+                  : (Covid19VM.of(context, true)
+                          .covid19notifyModel
+                          ?.locations
+                          ?.length ??
+                      0))),
+    );
   }
 }

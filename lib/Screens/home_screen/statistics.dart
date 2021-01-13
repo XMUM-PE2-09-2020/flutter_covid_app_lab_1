@@ -10,23 +10,27 @@ class Statistics extends StatefulWidget {
 }
 
 class _StatisticsState extends State<Statistics> {
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Covid19VM.of(context).covid19WeedGet().then((value){
-      });
+      Covid19VM.of(context).covid19WeedGet().then((value) {});
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Statistics"),
-      ),
-      body:SafeArea(child: GroupedBarChart.withSampleData(Covid19VM.of(context, true).covid19weekModel))
-    );
+        appBar: AppBar(
+          title: Text("Statistics"),
+        ),
+        body: SafeArea(
+            child: Center(
+                child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height / 3,
+                    child: GroupedBarChart.withSampleData(
+                        Covid19VM.of(context, true).covid19weekModel)))));
   }
 }

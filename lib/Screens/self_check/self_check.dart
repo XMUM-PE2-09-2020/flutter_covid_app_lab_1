@@ -38,10 +38,10 @@ class _SelfCheckState extends State<SelfCheck> {
     return SafeArea(
       top: false,
       bottom: false,
-      child: SingleChildScrollView(
-        child: Container(
-          color: kPrimaryColor2,
-          padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+      child: Container(
+        color: kPrimaryColor2,
+        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -99,7 +99,7 @@ class _SelfCheckState extends State<SelfCheck> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               SizedBox(
-                                height: 65,
+                                height: 60,
                               ),
                               Row(
                                 children: <Widget>[
@@ -126,7 +126,7 @@ class _SelfCheckState extends State<SelfCheck> {
                                 ],
                               ),
                               SizedBox(
-                                height: 40,
+                                height: 30,
                               ),
                               Text(
                                 _answerModel.trouble,
