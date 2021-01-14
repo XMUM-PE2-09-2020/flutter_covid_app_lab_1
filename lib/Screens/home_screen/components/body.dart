@@ -1,3 +1,4 @@
+import 'package:flutter_covid_app_lab_1/Screens/news/news_view.dart';
 import 'package:flutter_covid_app_lab_1/utils/data_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_covid_app_lab_1/Screens/home_screen/statistics.dart';
@@ -149,7 +150,16 @@ class Body extends StatelessWidget {
                       ItemCard(
                         image: "assets/images/news.png",
                         text: 'News',
-                        press: () {},
+                        press: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return NewsView();
+                              },
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),

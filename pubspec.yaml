@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.9.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -33,13 +33,17 @@ dependencies:
   charts_flutter: ^0.9.0
   dio: ^3.0.9
   provider: ^4.3.2+2
-
-
+  json_annotation: ^2.0.0
+  webview_flutter:
+    path: webview_flutter/
+# dependency_overrides:
+#   analyzer: '0.39.14'
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^1.10.0
-  json_serializable: ^3.3.0
+  build_runner: ^1.0.0
+  json_serializable: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

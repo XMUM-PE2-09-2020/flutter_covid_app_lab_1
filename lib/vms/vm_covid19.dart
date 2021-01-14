@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_covid_app_lab_1/model/news_model.dart';
 import 'package:flutter_covid_app_lab_1/vms/vm_base.dart';
 import 'package:flutter_covid_app_lab_1/model/covid19_notify_model.dart';
 import 'package:flutter_covid_app_lab_1/model/covid19_total_model.dart';
@@ -13,7 +14,7 @@ class Covid19VM extends BaseVM {
   Covid19WeekModel covid19weekModel;
   Covid19TotalModel covid19totalModel;
   Covid19NotifyModel covid19notifyModel;
-
+  List<NewsModel> news = List();
   Future<void> covid19WeedGet() async {
     Covid19WeekApi api = Covid19WeekApi();
     api.heards = {"x-rapidapi-key": "15a5f98aa8msh562d9ee429d0004p124703jsnbd5dd202af0e",
@@ -72,5 +73,21 @@ class Covid19VM extends BaseVM {
       
     }
     return null;
+  }
+
+  Future<void> covid19NewsGet() async {
+    Covid19NewsApi api = Covid19NewsApi();
+    final res = await DioWrapper(baseUrl: 'https://api.covidtracking.com/')
+        .httpRequest(api);
+     news = getNewsModelList(res.data);
+        notifyListeners();
+    return null;
+  }
+
+  Future<void> covid19Get(String url) async {
+    Covid19NullApi api = Covid19NullApi();
+    final res = await DioWrapper(baseUrl: url)
+        .httpRequest(api);
+    return res.data;
   }
 }
