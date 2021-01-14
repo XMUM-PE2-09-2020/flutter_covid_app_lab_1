@@ -8,22 +8,23 @@ part of 'news_model.dart';
 
 NewsModel _$NewsModelFromJson(Map<String, dynamic> json) {
   return NewsModel(
-      json['state'] as String,
-      json['notes'] as String,
-      json['covid19Site'] as String,
-      json['covid19SiteSecondary'] as String,
-      json['covid19SiteTertiary'] as String,
-      json['covid19SiteQuaternary'] as String,
-      json['covid19SiteQuinary'] as String,
-      json['twitter'] as String,
-      json['covid19SiteOld'] as String,
-      json['covidTrackingProjectPreferredTotalTestUnits'] as String,
-      json['covidTrackingProjectPreferredTotalTestField'] as String,
-      json['totalTestResultsField'] as String,
-      json['pui'] as String,
-      json['pum'] as bool,
-      json['name'] as String,
-      json['fips'] as String);
+    json['state'] as String,
+    json['notes'] as String,
+    json['covid19Site'] as String,
+    json['covid19SiteSecondary'] as String,
+    json['covid19SiteTertiary'] as String,
+    json['covid19SiteQuaternary'] as String,
+    json['covid19SiteQuinary'] as String,
+    json['twitter'] as String,
+    json['covid19SiteOld'] as String,
+    json['covidTrackingProjectPreferredTotalTestUnits'] as String,
+    json['covidTrackingProjectPreferredTotalTestField'] as String,
+    json['totalTestResultsField'] as String,
+    json['pui'] as String,
+    json['pum'] as bool,
+    json['name'] as String,
+    json['fips'] as String,
+  );
 }
 
 Map<String, dynamic> _$NewsModelToJson(NewsModel instance) => <String, dynamic>{
@@ -44,5 +45,5 @@ Map<String, dynamic> _$NewsModelToJson(NewsModel instance) => <String, dynamic>{
       'pui': instance.pui,
       'pum': instance.pum,
       'name': instance.name,
-      'fips': instance.fips
+      'fips': instance.fips,
     };

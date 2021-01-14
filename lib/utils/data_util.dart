@@ -83,6 +83,10 @@ class DateUtil {
     return formatDate(DateTime.now());
   }
 
+  static String getNowDateStrCustom(String format) {
+    return formatDate(DateTime.now(), format: format);
+  }
+
   /// format date by milliseconds.
   /// milliseconds 日期毫秒
   static String formatDateMs(int ms, {bool isUtc = false, String format}) {

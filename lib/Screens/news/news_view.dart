@@ -51,18 +51,18 @@ class _NewsViewState extends State<NewsView> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return WebViewContainer(Covid19VM.of(context, true).news[index].covid19SiteSecondary);
+                                return WebViewContainer(Covid19VM.of(context, true).news.articles[index].url);
                               },
                             ),
                           );
             });
           },
-          itemCount: Covid19VM.of(context, true).news.length > 30? 30: Covid19VM.of(context, true).news.length,
+          itemCount: Covid19VM.of(context, true).news?.articles?.length??0 > 30? 30: Covid19VM.of(context, true).news?.articles?.length??0,
         ))
               ],
             ))));
   }
-  Widget  view(index) => Container(
+  Widget view(index) => Container(
               padding: EdgeInsets.all(20),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,14 +70,14 @@ class _NewsViewState extends State<NewsView> {
                 width: 100,
                 height: 80,
                 color: Colors.green,
-                child: Image.asset("assets/images/news_image.jpg", fit: BoxFit.fill)
+                child: Image.network(Covid19VM.of(context, false).news.articles[index].urlToImage, fit: BoxFit.fill)
               ),
               Expanded(child: Padding(
                 padding:EdgeInsets.only(left: 10, top : 0),
                 child:Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Text(Covid19VM.of(context, false).news[index].notes, 
+                  Text(Covid19VM.of(context, false).news.articles[index].title, 
                   maxLines: 3, 
                   overflow: TextOverflow.ellipsis, 
                   style:TextStyle(fontSize: 15, color:Colors.black, fontWeight: FontWeight.w500))

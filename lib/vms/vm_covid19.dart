@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_covid_app_lab_1/model/covid19_total_model.dart';
+import 'package:flutter_covid_app_lab_1/model/news1_model.dart';
 import 'package:flutter_covid_app_lab_1/model/news_model.dart';
 import 'package:flutter_covid_app_lab_1/model/country_cases.dart';
+import 'package:flutter_covid_app_lab_1/utils/data_util.dart';
 import 'package:flutter_covid_app_lab_1/vms/vm_base.dart';
 import 'package:flutter_covid_app_lab_1/model/covid19_notify_model.dart';
 import 'package:flutter_covid_app_lab_1/model/covid19_week_model.dart';
@@ -19,7 +21,7 @@ class Covid19VM extends BaseVM {
   Covid19WeekModel covid19weekModel;
   Covid19TotalModel covid19totalModel;
   Covid19NotifyModel covid19notifyModel;
-  List<NewsModel> news = List();
+  News1Model news;
   Future<void> covid19WeedGet() async {
     Covid19WeekApi api = Covid19WeekApi();
     api.heards = {
@@ -99,18 +101,20 @@ class Covid19VM extends BaseVM {
   }
 
   Future<void> covid19NewsGet() async {
+    String data = DateUtil.getNowDateStrCustom(DateFormats.y_mo_d);
     Covid19NewsApi api = Covid19NewsApi();
-    final res = await DioWrapper(baseUrl: 'https://api.covidtracking.com/')
+    final res = await DioWrapper(
+            baseUrl:
+                'https://view-source:newsapi.org/v2/everything?q=Covid-19&from=${data}&sortBy=popularity&apiKey=128f2970a6e141f0962e0c5bae079601')
         .httpRequest(api);
-     news = getNewsModelList(res.data);
-        notifyListeners();
+    news = News1Model.fromJson(res.data);
+    notifyListeners();
     return null;
   }
 
   Future<void> covid19Get(String url) async {
     Covid19NullApi api = Covid19NullApi();
-    final res = await DioWrapper(baseUrl: url)
-        .httpRequest(api);
+    final res = await DioWrapper(baseUrl: url).httpRequest(api);
     return res.data;
   }
 }

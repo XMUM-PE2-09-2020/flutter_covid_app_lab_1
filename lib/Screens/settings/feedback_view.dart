@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:toast/toast.dart';
 
 class FeedBackView extends StatefulWidget {
   @override
@@ -61,7 +62,8 @@ class _FeedBackViewState extends State<FeedBackView> {
                           clickable ? Theme.of(context).primaryColor : Color(0xFFB9B9B9))),
               onTap: () {
                 if (clickable) {
-                  
+                  Toast.show("submit success", context);
+                  Navigator.pop(context);
                 }
               },
             ))
