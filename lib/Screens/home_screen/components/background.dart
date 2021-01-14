@@ -4,16 +4,17 @@ import '../../../constants.dart';
 
 class Background extends StatelessWidget {
   final Widget child;
-  const Background({
-    Key key,
-    @required this.child
-  }) : super(key: key);
+  const Background({Key key, @required this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final testContainer = Container(
+      key: Key('homescreen'),
+    );
     return Stack(
       children: <Widget>[
+        testContainer,
         Container(
           margin: EdgeInsets.only(
             bottom: size.height * 0.6,

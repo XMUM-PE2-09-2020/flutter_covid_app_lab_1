@@ -1,4 +1,3 @@
-
 import 'package:flutter_covid_app_lab_1/api/api_base.dart';
 
 class Covid19WeekApi extends HttpBaseApi {
@@ -8,8 +7,8 @@ class Covid19WeekApi extends HttpBaseApi {
   }
 
   @override
-  HttpMethord methord() {
-    return HttpMethord.http_get;
+  HttpMethod method() {
+    return HttpMethod.http_get;
   }
 }
 
@@ -20,8 +19,8 @@ class Covid19TotalApi extends HttpBaseApi {
   }
 
   @override
-  HttpMethord methord() {
-    return HttpMethord.http_get;
+  HttpMethod method() {
+    return HttpMethod.http_get;
   }
 }
 
@@ -32,8 +31,8 @@ class Covid19NewsApi extends HttpBaseApi {
   }
 
   @override
-  HttpMethord methord() {
-    return HttpMethord.http_get;
+  HttpMethod methord() {
+    return HttpMethod.http_get;
   }
 }
 
@@ -44,8 +43,8 @@ class Covid19NullApi extends HttpBaseApi {
   }
 
   @override
-  HttpMethord methord() {
-    return HttpMethord.http_get;
+  HttpMethod methord() {
+    return HttpMethod.http_get;
   }
 }
 
@@ -58,10 +57,7 @@ class Covid19NotifyApi extends HttpBaseApi {
   }
 
   @override
-  HttpMethord methord() {
-    return HttpMethord.http_get;
+  HttpMethod method() {
+    return HttpMethod.http_get;
   }
 }
-
-
-

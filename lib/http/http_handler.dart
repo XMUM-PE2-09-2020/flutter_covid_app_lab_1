@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_covid_app_lab_1/api/api_base.dart';
-import 'package:dio/dio.dart';
 
 typedef InterceptorCallBak = dynamic Function(dynamic response);
 typedef SendCallBak = Future<dynamic> Function(dynamic response);
@@ -56,9 +55,7 @@ class DioWrapper {
     if (interceptorSendAsync != null) {
       options = (await interceptorSendAsync(options)) ?? options;
     }
-    try {
-    } catch (e) {
-    }
+    try {} catch (e) {}
     return options;
   }
 
@@ -109,12 +106,12 @@ class DioWrapper {
 
     api.heards = api.heards ?? {};
     _dio.options.headers.addAll(api.heards);
-    final _httpMethod = api.methord();
+    final _httpMethod = api.method();
     _dio.options.queryParameters = api.queryParameters;
     _dio.options.method = api.httpType(_httpMethod);
     _dio.options.contentType = api.contentType(api.type());
     return _dio.request(path,
-        data: _httpMethod == HttpMethord.http_get ? null : api.params,
+        data: _httpMethod == HttpMethod.http_get ? null : api.params,
         queryParameters: api.queryParameters,
         options: api.options,
         cancelToken: cancelToken,

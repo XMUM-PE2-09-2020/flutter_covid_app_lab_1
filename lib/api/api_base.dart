@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-enum HttpMethord { http_get, http_post, http_put, http_delete, http_patch }
+enum HttpMethod { http_get, http_post, http_put, http_delete, http_patch }
 
 enum HttpContentType { app_json, app_x_www_form_urlencoded, formData }
 
@@ -20,7 +20,7 @@ abstract class HttpBaseApi {
 
   ///获取type
 
-  HttpMethord methord() => HttpMethord.http_post;
+  HttpMethod method() => HttpMethod.http_post;
 
   ///获取路径
 
@@ -51,21 +51,21 @@ abstract class HttpBaseApi {
     }
   }
 
-  String httpType(HttpMethord type) {
+  String httpType(HttpMethod type) {
     switch (type) {
-      case HttpMethord.http_get:
+      case HttpMethod.http_get:
         return "GET";
         break;
-      case HttpMethord.http_post:
+      case HttpMethod.http_post:
         return "POST";
         break;
-      case HttpMethord.http_put:
+      case HttpMethod.http_put:
         return "PUT";
         break;
-      case HttpMethord.http_delete:
+      case HttpMethod.http_delete:
         return "DELETE";
         break;
-      case HttpMethord.http_patch:
+      case HttpMethod.http_patch:
         return "PATCH";
         break;
       default:

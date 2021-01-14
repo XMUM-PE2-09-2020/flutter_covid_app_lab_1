@@ -17,20 +17,20 @@ Covid19NotifyModel _$Covid19NotifyModelFromJson(Map<String, dynamic> json) {
           ?.toList());
 }
 
-Map<String, dynamic> _$Covid19NotifyModelToJson(Covid19NotifyModel instance) =>
-    <String, dynamic>{
-      'latest': instance.latest,
-      'locations': instance.locations
-    };
+// Map<String, dynamic> _$Covid19NotifyModelToJson(Covid19NotifyModel instance) =>
+//     <String, dynamic>{
+//       'latest': instance.latest,
+//       'locations': instance.locations,
+//     };
 
 Latest _$LatestFromJson(Map<String, dynamic> json) {
   return Latest(json['confirmed'] as int, json['deaths'] as int);
 }
 
-Map<String, dynamic> _$LatestToJson(Latest instance) => <String, dynamic>{
-      'confirmed': instance.confirmed,
-      'deaths': instance.deaths
-    };
+// Map<String, dynamic> _$LatestToJson(Latest instance) => <String, dynamic>{
+//       'confirmed': instance.confirmed,
+//       'deaths': instance.deaths,
+//     };
 
 Locations _$LocationsFromJson(Map<String, dynamic> json) {
   return Locations(
@@ -45,12 +45,12 @@ Locations _$LocationsFromJson(Map<String, dynamic> json) {
           : Latest.fromJson(json['latest'] as Map<String, dynamic>));
 }
 
-Map<String, dynamic> _$LocationsToJson(Locations instance) => <String, dynamic>{
-      'id': instance.id,
-      'country': instance.country,
-      'state': instance.state,
-      'county': instance.county,
-      'fips': instance.fips,
-      'last_updated': instance.lastUpdated,
-      'latest': instance.latest
-    };
+// Map<String, dynamic> _$LocationsToJson(Locations instance) => <String, dynamic>{
+//       'id': instance.id,
+//       'country': instance.country,
+//       'state': instance.state,
+//       'county': instance.county,
+//       'fips': instance.fips,
+//       'last_updated': instance.lastUpdated,
+//       'latest': instance.latest,
+//     };

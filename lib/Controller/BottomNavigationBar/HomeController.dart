@@ -5,14 +5,14 @@ import 'package:flutter_covid_app_lab_1/Screens/qrcode_screen/qrcode_screen.dart
 import 'package:flutter_covid_app_lab_1/Screens/settings/personal.dart';
 
 //Author: Ting Sen
-class BottomNavigationBarController extends StatefulWidget {
+class HomeController extends StatefulWidget {
   @override
-  _BottomNavigationBarControllerState createState() =>
-      _BottomNavigationBarControllerState();
+  _HomeControllerState createState() =>
+      _HomeControllerState();
 }
 
-class _BottomNavigationBarControllerState
-    extends State<BottomNavigationBarController> {
+class _HomeControllerState
+    extends State<HomeController> {
   final List<Widget> pages = [
     HomeScreen(
       key: PageStorageKey('HomeScreen'),
