@@ -127,7 +127,7 @@ class Body extends StatelessWidget {
                       ),
                       ItemCard(
                         image: "assets/images/nearby.png",
-                        text: 'Nearby',
+                        text: 'World',
                         press: () {
                           Navigator.of(context).pushNamed('/nearby');
                         },

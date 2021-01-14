@@ -1,135 +1,198 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_covid_app_lab_1/Screens/travelhistory_screen/travelhistory_screen.dart';
+import 'dart:convert';
 
-//Author:Zehao
-class QRScreen extends StatelessWidget {
-  const QRScreen({Key key}) : super(key: key);
+import 'package:flutter/material.dart';
+import 'package:flutter_covid_app_lab_1/model/travel_history.dart';
+import 'package:flutter_covid_app_lab_1/model/user.dart';
+import 'package:flutter_session/flutter_session.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_covid_app_lab_1/Screens/qrcode_screen/add_travel_log.dart';
+
+class QRScreen extends StatefulWidget {
+  QRScreen({Key key}) : super(key: key);
 
   @override
+  _QRScreenState createState() => _QRScreenState();
+}
+
+class _QRScreenState extends State<QRScreen> implements AddTravelRecord {
+  GlobalKey qrKey = GlobalKey();
+  AddTravelRecordPresenter _presenter;
+  String qrText;
+  String place;
+  dynamic token;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    _getData();
+    _presenter = AddTravelRecordPresenter(this);
+  }
+
+  _getData() async {
+    token = await FlutterSession().get("token");
+  }
+
+  _showSnackBar(String text, Duration time) {
+    scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text(text),
+      duration: time,
+    ));
+  }
+
+  QRViewController controller;
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.blue[50],
-        appBar: AppBar(
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: (){
-                Navigator.pop(context);
+    return WillPopScope(
+      child: Container(
+        child: Scaffold(
+          key: scaffoldKey,
+          body: Column(
+            children: <Widget>[
+              Expanded(
+                flex: 5,
+                child: QRView(
+                  key: qrKey,
+                  overlay: QrScannerOverlayShape(
+                    borderRadius: 15,
+                    borderColor: Colors.red,
+                    borderWidth: 5,
+                    cutOutSize: 300,
+                  ),
+                  onQRViewCreated: _onQRViewCreate,
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text('Scan result: $qrText'),
+                    Text('Decode result: $place'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Spacer(
+                          flex: 1,
+                        ),
+                        Expanded(
+                          flex: 5,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              if (place != null) {
+                                User user = User.map(token);
+                                TravelHistory log = TravelHistory(
+                                    user.username, place, DateTime.now().toString());
+                                _presenter.addNewLog(log);
+                              } else {
+                                _showSnackBar(
+                                  'Not a valid QR code.',
+                                  Duration(seconds: 2),
+                                );
+                              }
+                            },
+                            child: Text('Check-in'),
+                          ),
+                        ),
+                        Spacer(
+                          flex: 1,
+                        ),
+                        Expanded(
+                          flex: 5,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).pushNamed('/travel_history');
+                            },
+                            child: Text('View Travel History'),
+                          ),
+                        ),
+                        Spacer(
+                          flex: 1,
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+      onWillPop: () => showDialog<bool>(
+        context: context,
+        builder: (c) => AlertDialog(
+          title: Text('Warning'),
+          content: Text('Do you really want to logout?'),
+          actions: [
+            FlatButton(
+              child: Text('Yes'),
+              onPressed: () async {
+                SharedPreferences preferences =
+                    await SharedPreferences.getInstance();
+                await preferences.clear();
+                Navigator.of(c).popUntil(ModalRoute.withName('/'));
               },
             ),
-          title: Text('Health Satus'),
-        ),
-        body: ListView(
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(top: 30),
-              //color: Colors.blue,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(bottom: 0),
-                    padding: EdgeInsets.symmetric(horizontal: 35, vertical: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.blueAccent,
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(10),
-                        topLeft: Radius.circular(10),
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          "Health Status Code",
-                          style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Padding(padding: EdgeInsets.only(top: 10, bottom: 5)),
-                        Text(
-                          "Name: Chris Paul",
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Padding(padding: EdgeInsets.only(top: 5, bottom: 10)),
-                        Text(
-                          "Status: Normal",
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Padding(padding: EdgeInsets.only(bottom: 10)),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+            FlatButton(
+              child: Text('No'),
+              onPressed: () => Navigator.pop(c, false),
             ),
-            Container(
-              decoration: new BoxDecoration(
-                  color: Colors.white
-              ),
-              margin: EdgeInsets.symmetric(horizontal: 40),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    child: Column(
-                      children: <Widget>[
-                        Text("2020-10-20 20:20:05"),
-                        Padding(padding: EdgeInsets.only(bottom: 20)),
-                        Image.network('http://gadgetultra.com/wp-content/uploads/2013/03/QR-CODE.png'),
-                        Padding(padding: EdgeInsets.only(bottom:20)),
-                        Text("Share my code"),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 20),
-              //color: Colors.blue,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(bottom: 0,left: 30,right: 30),
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(5),
-                        topLeft: Radius.circular(5),
-                        bottomLeft: Radius.circular(5),
-                        bottomRight: Radius.circular(5),
-                      ),
-                    ),
-                    child: RaisedButton(
-                      onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>TravelHistory()));},
-                      child: Text("My Travel History",
-                        style: TextStyle(fontSize: 10.0),
-                      ),
-                      textColor: Colors.white,
-                      color: Colors.blue,
-                      splashColor: Colors.red,
-                      highlightColor: Colors.yellow,
-                    ),
-                  ),
-                ],
-              ),
-            )
           ],
-        )
+        ),
+      ),
     );
+  }
+
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
+  }
+
+  void _onQRViewCreate(QRViewController controller) {
+    this.controller = controller;
+    controller.scannedDataStream.listen((scanData) {
+      setState(() {
+        var map;
+        bool scanIsJson = false;
+        qrText = scanData.code;
+
+        try {
+          map = jsonDecode(qrText) as Map<String, dynamic>;
+          scanIsJson = true;
+        } on FormatException {}
+
+        if (scanIsJson == true) {
+          place = map['place'];
+        } else {
+          place = null;
+        }
+      });
+    });
+  }
+
+  @override
+  void onAddError(Error error) {
+    _showSnackBar(
+      error.toString(),
+      Duration(seconds: 4),
+    );
+    print(error.toString());
+  }
+
+  @override
+  void onAddSuccess(bool res) {
+    if (res == true) {
+      _showSnackBar(
+        'Successfully checked-in.',
+        Duration(seconds: 2),
+      );
+    } else {
+      _showSnackBar(
+        'Check-in failed.',
+        Duration(seconds: 2),
+      );
+    }
   }
 }

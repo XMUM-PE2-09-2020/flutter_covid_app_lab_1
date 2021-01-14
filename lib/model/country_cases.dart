@@ -1,3 +1,4 @@
+//author: ting sen
 import 'country_info.dart';
 
 class CountryCases {
@@ -27,7 +28,7 @@ class CountryCases {
         todayCases: json['todayCases'] as int,
         active: json['active'] as int,
         recovered: json['recovered'] as int,
-        death: json['death'] as int,
+        death: json['deaths'] as int,
         lat: CountryInfo.fromJson(json['countryInfo']).lat,
         long: CountryInfo.fromJson(json['countryInfo']).long);
   }

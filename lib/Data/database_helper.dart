@@ -10,15 +10,21 @@ class DatabaseHelper {
 
   static Database _db;
 
-  static final _databaseName = "CoronaTracker2.db";
-  static final _databaseVersion = 1;
+  static final _databaseName = "CoronaTracker3.db";
+  static final _databaseVersion = 3;
 
-  static final table = 'User';
+  static final tableUsers = 'Users';
 
   static final columnUsername = 'username';
   static final columnPassword = 'password';
   static final columnPhoneNumber = 'phone_number';
   static final columnEmail = 'email';
+
+  static final tablePlaces = 'Places';
+
+  static final columnTablePlacesId = '_id';
+  static final columnPlaces = 'place';
+  static final columnTime = 'time';
 
   Future<Database> get db async {
     if (_db != null) {
@@ -47,13 +53,23 @@ class DatabaseHelper {
 
   void _onCreate(Database db, int version) async {
     await db.execute('''
-    CREATE TABLE $table (
+    CREATE TABLE $tableUsers (
       $columnUsername TEXT PRIMARY KEY, 
       $columnPassword TEXT NOT NULL, 
       $columnEmail TEXT NOT NULL, 
       $columnPhoneNumber INTEGER NOT NULL
-    )
+    );
     ''');
-    print("Table is created");
+    print("$tableUsers is created");
+
+    await db.execute('''
+    CREATE TABLE $tablePlaces (
+      $columnTablePlacesId INTEGER PRIMARY KEY, 
+      $columnUsername TEXT NOT NULL,
+      $columnPlaces TEXT NOT NULL, 
+      $columnTime TEXT NOT NULL
+    );
+    ''');
+    print("$tablePlaces is created");
   }
 }

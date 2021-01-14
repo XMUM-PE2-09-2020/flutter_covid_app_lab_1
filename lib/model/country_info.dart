@@ -1,3 +1,4 @@
+//author: ting sen
 class CountryInfo {
   int id;
   double lat;

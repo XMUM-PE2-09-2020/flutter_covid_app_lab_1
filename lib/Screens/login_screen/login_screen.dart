@@ -31,6 +31,7 @@ class _LoginScreenState extends State<LoginScreen>
   void _showSnackBar(String text) {
     scaffoldKey.currentState.showSnackBar(SnackBar(
       content: Text(text),
+      duration: Duration(seconds: 1),
     ));
   }
 
@@ -133,12 +134,12 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   Future<void> onLoginSuccess(User user) async {
-    _showSnackBar(user.username.toString() + ' logged in susccessfully.');
+    _showSnackBar(user.username.toString() + ' logged in successfully.');
     await FlutterSession().set("token", user);
     setState(() {
       isLoading = false;
     });
     Future.delayed(
-        Duration(seconds: 1), () => Navigator.of(context).pushNamed('/home'));
+        Duration(seconds: 2), () => Navigator.of(context).pushNamed('/home'));
   }
 }

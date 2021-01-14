@@ -78,6 +78,7 @@ class Covid19VM extends BaseVM {
     return null;
   }
 
+  //addeed by: ting sen
   Future<List<CountryCases>> fetchCountriesCovid19Cases() async {
     final res =
         await http.get('https://corona.lmao.ninja/v3/covid-19/countries');

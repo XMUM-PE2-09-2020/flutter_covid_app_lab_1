@@ -37,6 +37,7 @@ class _SignUpScreenState extends State<SignUpScreen>
   void _showSnackBar(String text) {
     scaffoldKey.currentState.showSnackBar(SnackBar(
       content: Text(text),
+      duration: Duration(seconds: 1),
     ));
   }
 
@@ -178,7 +179,7 @@ class _SignUpScreenState extends State<SignUpScreen>
       });
 
       Future.delayed(
-          Duration(seconds: 1), () => Navigator.of(context).pushNamed('/home'));
+          Duration(seconds: 2), () => Navigator.of(context).pushNamed('/home'));
     } else {
       _showSnackBar('Sign up failed. Username existed.');
 
