@@ -14,7 +14,7 @@ class _AboutUsViewState extends State<AboutUsView> {
         title: Text("About us")
       ),
       body: Center(
-        child: Text("Covid-19 app is dedicated to cutting edge covid-19 information")
+        child: Text("Covid-19 app is dedicated to cutting edge covid-19 information", textAlign: TextAlign.center,)
       )
     );
   }

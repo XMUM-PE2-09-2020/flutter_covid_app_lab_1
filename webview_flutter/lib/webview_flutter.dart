@@ -445,8 +445,6 @@ WebSettings _clearUnchangedWebSettings(
 
 Set<String> _extractChannelNames(Set<JavascriptChannel> channels) {
   final Set<String> channelNames = channels == null
-      // TODO(iskakaushik): Remove this when collection literals makes it to stable.
-      // ignore: prefer_collection_literals
       ? Set<String>()
       : channels.map((JavascriptChannel channel) => channel.name).toSet();
   return channelNames;
@@ -459,7 +457,6 @@ class _PlatformCallbacksHandler implements WebViewPlatformCallbacksHandler {
 
   WebView _widget;
 
-  // Maps a channel name to a channel.
   final Map<String, JavascriptChannel> _javascriptChannels =
       <String, JavascriptChannel>{};
 

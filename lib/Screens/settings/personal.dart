@@ -92,20 +92,16 @@ class _PersonalState extends State<Personal>
         ),
         Row(
           children: [
-            // ImageUtils.cachedImg(_avatar,
-            //     width: 60 , height: 60 , radius: 30.0 ),
             SizedBox(
               width: 15 ,
             ),
             Container(
-              // margin: EdgeInsets.only(top: 7.5),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     _personalData['trueName'] ?? '',
-                    // style: pingFangB(18, color: Colors.black),
                   ),
                   SizedBox(
                     height: 10 ,
@@ -113,8 +109,6 @@ class _PersonalState extends State<Personal>
                   Text(
                     '${_personalData['department']}(${_personalData['signatureTitle']})' ??
                         '',
-                    // style:
-                    //     pingFangM(13, color: Color.fromRGBO(153, 153, 153, 1)),
                   ),
                 ],
               ),
