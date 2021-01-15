@@ -1,6 +1,9 @@
+import 'package:flutter_covid_app_lab_1/Screens/news/news_view.dart';
+import 'package:flutter_covid_app_lab_1/utils/data_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_covid_app_lab_1/Screens/self_check/self_check.dart';
 import 'package:flutter_covid_app_lab_1/constants.dart';
+import 'package:flutter_covid_app_lab_1/vms/vm_covid19.dart';
+import 'package:flutter_session/flutter_session.dart';
 import 'background.dart';
 import 'item_card.dart';
 
@@ -31,12 +34,21 @@ class Body extends StatelessWidget {
                         SizedBox(
                           height: size.height * 0.04,
                         ),
-                        Text(
-                          'Good Morning, Paul!',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 28),
+                        FutureBuilder(
+                          future: FlutterSession().get("token"),
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            return Text(
+                              snapshot.hasData
+                                  ? "Welcome, " + snapshot.data['username']
+                                  : "Loading...",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30,
+                              ),
+                            );
+                          },
                         ),
                         SizedBox(
                           height: size.height * 0.04,
@@ -44,13 +56,13 @@ class Body extends StatelessWidget {
                         Text(
                           'All cases updated',
                           style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         Text(
-                          'Last updated on 20 Oct 2020',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
+                          'Last updated on ${DateTime.now().day} ${DateUtil.getMonth(DateTime.now(), short: true)} ${DateTime.now().year}',
+                          style: TextStyle(color: Colors.white, fontSize: 10),
                         ),
                       ],
                     ),
@@ -60,19 +72,37 @@ class Body extends StatelessWidget {
                       ItemCard(
                         image: "assets/images/confirmed.png",
                         text: 'Confirmed',
-                        number: '8960',
+                        number: Covid19VM.of(context, true)
+                                .covid19totalModel
+                                ?.data
+                                ?.summary
+                                ?.totalCases
+                                ?.toString() ??
+                            "0",
                         press: () {},
                       ),
                       ItemCard(
                         image: "assets/images/recovered.png",
                         text: 'Recovered',
-                        number: '3221',
+                        number: Covid19VM.of(context, true)
+                                .covid19totalModel
+                                ?.data
+                                ?.summary
+                                ?.recovered
+                                ?.toString() ??
+                            "0",
                         press: () {},
                       ),
                       ItemCard(
                         image: "assets/images/death.png",
                         text: 'Death',
-                        number: '169',
+                        number: Covid19VM.of(context, true)
+                                .covid19totalModel
+                                ?.data
+                                ?.summary
+                                ?.deaths
+                                ?.toString() ??
+                            "0",
                         press: () {},
                       ),
                     ],
@@ -86,25 +116,22 @@ class Body extends StatelessWidget {
                         image: "assets/images/self-check.png",
                         text: 'Self-Check',
                         press: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return SelfCheck();
-                              },
-                            ),
-                          );
+                          Navigator.of(context).pushNamed('/self_check');
                         },
                       ),
                       ItemCard(
                         image: "assets/images/prevention.png",
                         text: 'Prevention',
-                        press: () {},
+                        press: () {
+                          Navigator.of(context).pushNamed('/prevention');
+                        },
                       ),
                       ItemCard(
                         image: "assets/images/nearby.png",
-                        text: 'Nearby',
-                        press: () {},
+                        text: 'World',
+                        press: () {
+                          Navigator.of(context).pushNamed('/nearby');
+                        },
                       ),
                     ],
                   ),
@@ -116,17 +143,30 @@ class Body extends StatelessWidget {
                       ItemCard(
                         image: "assets/images/statistics.png",
                         text: 'Statistics',
-                        press: () {},
+                        press: () {
+                          Navigator.of(context).pushNamed('/statistics');
+                        },
                       ),
                       ItemCard(
                         image: "assets/images/contacts.png",
                         text: 'Contacts',
-                        press: () {},
+                        press: () {
+                          Navigator.of(context).pushNamed('/contact');
+                        },
                       ),
                       ItemCard(
                         image: "assets/images/news.png",
                         text: 'News',
-                        press: () {},
+                        press: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return NewsView();
+                              },
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),

@@ -23,6 +23,7 @@ class RoundedInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFieldContainer(
       child: TextFormField(
+        key: key,
         obscureText: obscureText,
         onSaved: onSaved,
         validator: validator,

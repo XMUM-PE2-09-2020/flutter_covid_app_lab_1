@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_covid_app_lab_1/Models/user.dart';
+import 'package:flutter_covid_app_lab_1/model/user.dart';
 import 'package:flutter_covid_app_lab_1/Screens/login_screen/components/logo_name_and_slogan.dart';
 import 'package:flutter_covid_app_lab_1/Screens/login_screen/components/no_account.dart';
 import 'package:flutter_covid_app_lab_1/Screens/login_screen/components/rounded_buttons.dart';
 import 'package:flutter_covid_app_lab_1/Screens/login_screen/components/rounded_input_field.dart';
 import 'package:flutter_covid_app_lab_1/Screens/register_screen/register_presenter.dart';
+import 'package:flutter_session/flutter_session.dart';
 import 'components/or_divider.dart';
 import 'components/social_icon.dart';
 
@@ -23,18 +24,20 @@ class _SignUpScreenState extends State<SignUpScreen>
   bool isLoading = false;
   String _username, _email, _password;
   int _phoneNumber;
-  RegisterPagePresenter _presenter;
+  RegisterPagePresenter _registerPresenter;
+  User _user;
 
   @override
   void initState() {
     super.initState();
     isLoading = false;
-    _presenter = RegisterPagePresenter(this);
+    _registerPresenter = RegisterPagePresenter(this);
   }
 
   void _showSnackBar(String text) {
     scaffoldKey.currentState.showSnackBar(SnackBar(
       content: Text(text),
+      duration: Duration(seconds: 1),
     ));
   }
 
@@ -43,45 +46,54 @@ class _SignUpScreenState extends State<SignUpScreen>
     Size size = MediaQuery.of(context).size;
 
     var registerBtn = RoundedButton(
+      key: Key('signup_button'),
       text: "REGISTER",
       press: () {
         if (formKey.currentState.validate()) {
           setState(() {
             isLoading = true;
             formKey.currentState.save();
-            User _user = User(_username, _password, _email, _phoneNumber);
-            _presenter.doRegister(_user);
+            _user = User(_username, _password, _email, _phoneNumber);
+            _registerPresenter.doRegister(_user);
           });
         }
       },
     );
 
-    var registerForm = Form(
+    final phoneNumberField = RoundedInputField(
+      key: Key('signup_phone_input_field'),
+      icon: Icons.phone,
+      hintText: "Phone Number",
+      onSaved: (value) => _phoneNumber = int.parse(value),
+    );
+    final emailField = RoundedInputField(
+      key: Key('signup_email_input_field'),
+      icon: Icons.email,
+      hintText: "Email Address",
+      onSaved: (value) => _email = value,
+    );
+    final usernameField = RoundedInputField(
+      key: Key('signup_username_input_field'),
+      icon: Icons.person,
+      hintText: "Username",
+      onSaved: (value) => _username = value,
+    );
+    final passwordField = RoundedInputField(
+      key: Key('signup_password_input_field'),
+      obscureText: true,
+      icon: Icons.lock,
+      hintText: "Password",
+      suffixIcon: Icons.visibility,
+      onSaved: (value) => _password = value,
+    );
+    final registerForm = Form(
       key: formKey,
       child: Column(
         children: [
-          RoundedInputField(
-            icon: Icons.phone,
-            hintText: "Phone Number",
-            onSaved: (value) => _phoneNumber = int.parse(value),
-          ),
-          RoundedInputField(
-            icon: Icons.email,
-            hintText: "Email Address",
-            onSaved: (value) => _email = value,
-          ),
-          RoundedInputField(
-            icon: Icons.person,
-            hintText: "Username",
-            onSaved: (value) => _username = value,
-          ),
-          RoundedInputField(
-            obscureText: true,
-            icon: Icons.lock,
-            hintText: "Password",
-            suffixIcon: Icons.visibility,
-            onSaved: (value) => _password = value,
-          ),
+          phoneNumberField,
+          emailField,
+          usernameField,
+          passwordField,
         ],
       ),
     );
@@ -157,11 +169,23 @@ class _SignUpScreenState extends State<SignUpScreen>
   }
 
   @override
-  void onRegisterSuccess(int res) {
-    _showSnackBar(res.toString());
-    print(res.toString());
-    setState(() {
-      isLoading = false;
-    });
+  Future<void> onRegisterSuccess(bool res) async {
+    if (res == true) {
+      _showSnackBar(_user.username.toString() + ' signed up successfully.');
+      await FlutterSession().set("token", _user);
+
+      setState(() {
+        isLoading = false;
+      });
+
+      Future.delayed(
+          Duration(seconds: 2), () => Navigator.of(context).pushNamed('/home'));
+    } else {
+      _showSnackBar('Sign up failed. Username existed.');
+
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 }

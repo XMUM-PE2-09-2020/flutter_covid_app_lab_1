@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_covid_app_lab_1/Models/user.dart';
+import 'package:flutter_covid_app_lab_1/model/user.dart';
+import 'package:flutter_session/flutter_session.dart';
 
 import 'components/logo_name_and_slogan.dart';
 import 'components/no_account.dart';
@@ -30,6 +31,7 @@ class _LoginScreenState extends State<LoginScreen>
   void _showSnackBar(String text) {
     scaffoldKey.currentState.showSnackBar(SnackBar(
       content: Text(text),
+      duration: Duration(seconds: 1),
     ));
   }
 
@@ -37,34 +39,38 @@ class _LoginScreenState extends State<LoginScreen>
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    var loginForm = Form(
+    final usernameField = RoundedInputField(
+      key: Key('login_username_input_field'),
+      icon: Icons.person,
+      hintText: "Username",
+      onSaved: (value) => _username = value,
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Field required';
+        }
+        return null;
+      },
+    );
+    final passwordField = RoundedInputField(
+      key: Key('login_password_input_field'),
+      obscureText: true,
+      icon: Icons.lock,
+      hintText: "Password",
+      suffixIcon: Icons.visibility,
+      onSaved: (value) => _password = value,
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Field required';
+        }
+        return null;
+      },
+    );
+    final loginForm = Form(
       key: formKey,
       child: Column(
         children: [
-          RoundedInputField(
-            icon: Icons.person,
-            hintText: "Username",
-            onSaved: (value) => _username = value,
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Field required';
-              }
-              return null;
-            },
-          ),
-          RoundedInputField(
-            obscureText: true,
-            icon: Icons.lock,
-            hintText: "Password",
-            suffixIcon: Icons.visibility,
-            onSaved: (value) => _password = value,
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Field required';
-              }
-              return null;
-            },
-          ),
+          usernameField,
+          passwordField,
         ],
       ),
     );
@@ -99,6 +105,7 @@ class _LoginScreenState extends State<LoginScreen>
                 loginForm,
                 loginBtn,
                 NoAccount(
+                  key: Key('redirect_to_signup_button'),
                   press: () {
                     Navigator.of(context).pushNamed('/register');
                   },
@@ -118,19 +125,21 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   void onLoginError(Error error) {
-    _showSnackBar(error.toString());
+    _showSnackBar("Login failed.");
+    print(error.toString());
     setState(() {
       isLoading = false;
     });
-    print(error.toString());
   }
 
   @override
-  void onLoginSuccess(User user) {
-    _showSnackBar(user.toString());
+  Future<void> onLoginSuccess(User user) async {
+    _showSnackBar(user.username.toString() + ' logged in successfully.');
+    await FlutterSession().set("token", user);
     setState(() {
       isLoading = false;
     });
-    Navigator.of(context).pushNamed('/home');
+    Future.delayed(
+        Duration(seconds: 2), () => Navigator.of(context).pushNamed('/home'));
   }
 }
