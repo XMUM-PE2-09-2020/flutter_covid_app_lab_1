@@ -177,8 +177,8 @@ class _SignUpScreenState extends State<SignUpScreen>
         isLoading = false;
       });
 
-      Future.delayed(
-          Duration(seconds: 1), () => Navigator.of(context).pushNamed('/home'));
+      Future.delayed(Duration(seconds: 1),
+          () => Navigator.of(context).pushReplacementNamed('/home'));
     } else {
       _showSnackBar('Sign up failed. Username existed.');
 

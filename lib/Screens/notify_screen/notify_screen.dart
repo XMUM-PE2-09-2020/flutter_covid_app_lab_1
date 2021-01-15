@@ -40,12 +40,7 @@ class _NotifyScreenState extends State<NotifyScreen> {
     return Scaffold(
       backgroundColor: Colors.blue[50],
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        automaticallyImplyLeading: false,
         title: Text('Notification'),
       ),
       body: SafeArea(

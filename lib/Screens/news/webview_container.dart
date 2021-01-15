@@ -1,9 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:toast/toast.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
 
 class WebViewContainer extends StatefulWidget {
   final String url;
@@ -43,9 +40,7 @@ class WebViewContainerState extends State<WebViewContainer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: hasAppBar?AppBar(
-
-        ): null,
+        appBar: hasAppBar ? AppBar() : null,
         body: SafeArea(
             child: LayoutBuilder(builder: (ctx, size) {
               return Column(

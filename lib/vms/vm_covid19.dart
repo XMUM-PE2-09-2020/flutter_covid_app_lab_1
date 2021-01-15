@@ -105,7 +105,7 @@ class Covid19VM extends BaseVM {
     Covid19NewsApi api = Covid19NewsApi();
     final res = await DioWrapper(
             baseUrl:
-                'https://view-source:newsapi.org/v2/everything?q=Covid-19&from=${data}&sortBy=popularity&apiKey=128f2970a6e141f0962e0c5bae079601')
+                'http://newsapi.org/v2/everything?q=Covid-19&from=$data&sortBy=popularity&apiKey=128f2970a6e141f0962e0c5bae079601')
         .httpRequest(api);
     news = News1Model.fromJson(res.data);
     notifyListeners();

@@ -31,7 +31,7 @@ class Covid19NewsApi extends HttpBaseApi {
   }
 
   @override
-  HttpMethod methord() {
+  HttpMethod method() {
     return HttpMethod.http_get;
   }
 }
@@ -47,8 +47,6 @@ class Covid19NullApi extends HttpBaseApi {
     return HttpMethod.http_get;
   }
 }
-
-
 
 class Covid19NotifyApi extends HttpBaseApi {
   @override

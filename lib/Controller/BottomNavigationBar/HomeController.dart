@@ -7,12 +7,10 @@ import 'package:flutter_covid_app_lab_1/Screens/settings/personal.dart';
 //Author: Ting Sen
 class HomeController extends StatefulWidget {
   @override
-  _HomeControllerState createState() =>
-      _HomeControllerState();
+  _HomeControllerState createState() => _HomeControllerState();
 }
 
-class _HomeControllerState
-    extends State<HomeController> {
+class _HomeControllerState extends State<HomeController> {
   final List<Widget> pages = [
     HomeScreen(
       key: PageStorageKey('HomeScreen'),
@@ -58,11 +56,16 @@ class _HomeControllerState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: _bottomNavigationBar(_selectedIndex),
-      body: PageStorage(
-        child: pages[_selectedIndex],
-        bucket: bucket,
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Scaffold(
+        bottomNavigationBar: _bottomNavigationBar(_selectedIndex),
+        body: PageStorage(
+          child: pages[_selectedIndex],
+          bucket: bucket,
+        ),
       ),
     );
   }

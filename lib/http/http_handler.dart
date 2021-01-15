@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:io';
+import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_covid_app_lab_1/api/api_base.dart';
@@ -37,6 +39,20 @@ class DioWrapper {
     _dio.options.baseUrl = baseUrl ?? _baseUrl;
     _dio.interceptors.add(InterceptorsWrapper(
         onRequest: _onSend, onResponse: _onSuccess, onError: _onError));
+    // (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+    //     (client) {
+    //   client.findProxy = (url) {
+    //     ///设置代理 电脑ip地址
+    //     return "PROXY 127.0.0.1:1087";
+
+    //     ///不设置代理
+    //     // return 'DIRECT';
+    //   };
+
+    //   ///忽略证书
+    //   client.badCertificateCallback =
+    //       (X509Certificate cert, String host, int port) => true;
+    // };
   }
 
   factory DioWrapper.hander(BuildContext context) =>
