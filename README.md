@@ -13,6 +13,6 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 # flutter_covid_app_lab_1
 API used: 
-https://disease.sh/docs/ COVID-19 Country Statistics and Coordinates
-https://console.developers.google.com/ World Map
-https://newsapi.org/ COVID-19 News
+https://disease.sh/docs/ COVID-19 Country Statistics and Coordinates,
+https://console.developers.google.com/ World Map,
+https://newsapi.org/ COVID-19 News,
