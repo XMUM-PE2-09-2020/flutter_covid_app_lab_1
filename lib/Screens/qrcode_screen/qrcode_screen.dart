@@ -8,6 +8,7 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_covid_app_lab_1/Screens/qrcode_screen/add_travel_log.dart';
 
+//author: ting sen
 class QRScreen extends StatefulWidget {
   QRScreen({Key key}) : super(key: key);
 

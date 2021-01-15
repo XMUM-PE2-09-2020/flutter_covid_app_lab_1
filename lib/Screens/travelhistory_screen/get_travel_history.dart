@@ -1,6 +1,7 @@
 import 'package:flutter_covid_app_lab_1/Data/rest_data.dart';
 import 'package:flutter_covid_app_lab_1/model/travel_history.dart';
 
+//author: ting sen
 abstract class GetTravelRecord {
   void onGetSuccess(List<TravelHistory> res);
   void onGetError(Error error);

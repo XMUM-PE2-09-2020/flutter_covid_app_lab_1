@@ -39,7 +39,6 @@ dependencies:
   flutter_session: 0.1.1
   google_maps_flutter: 1.0.10
   http: 0.12.2
-  csv: 4.1.0
   qr_code_scanner: 0.3.0 
 
 dev_dependencies:

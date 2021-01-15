@@ -5,6 +5,7 @@ import 'package:flutter_covid_app_lab_1/model/travel_history.dart';
 import 'package:flutter_covid_app_lab_1/model/user.dart';
 import 'package:flutter_session/flutter_session.dart';
 
+//author: ting sen
 class TravelHistoryScreen extends StatefulWidget {
   TravelHistoryScreen({Key key}) : super(key: key);
 
@@ -39,7 +40,6 @@ class _TravelHistoryScreenState extends State<TravelHistoryScreen>
         key: scaffoldKey,
         backgroundColor: Colors.blue[50],
         appBar: AppBar(
-          leading: Container(),
           title: Text('Travel History'),
         ),
         body: SafeArea(

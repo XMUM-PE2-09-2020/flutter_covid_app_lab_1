@@ -6,6 +6,7 @@ import 'package:flutter_covid_app_lab_1/model/country_cases.dart';
 import 'package:flutter_covid_app_lab_1/vms/vm_covid19.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+//author: ting sen
 class NearbyScreen extends StatefulWidget {
   NearbyScreen({Key key}) : super(key: key);
 
