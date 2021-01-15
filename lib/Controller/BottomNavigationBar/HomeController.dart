@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_covid_app_lab_1/Screens/home_screen/home_screen.dart';
 import 'package:flutter_covid_app_lab_1/Screens/notify_screen/notify_screen.dart';
 import 'package:flutter_covid_app_lab_1/Screens/qrcode_screen/qrcode_screen.dart';
+import 'package:flutter_covid_app_lab_1/Screens/settings/personal.dart';
 
 //Author: Ting Sen
 class HomeController extends StatefulWidget {
   @override
-  _HomeControllerState createState() =>
-      _HomeControllerState();
+  _HomeControllerState createState() => _HomeControllerState();
 }
 
-class _HomeControllerState
-    extends State<HomeController> {
+class _HomeControllerState extends State<HomeController> {
   final List<Widget> pages = [
     HomeScreen(
       key: PageStorageKey('HomeScreen'),
@@ -22,8 +21,8 @@ class _HomeControllerState
     NotifyScreen(
       key: PageStorageKey('NotifyScreen'),
     ),
-    QRScreen(
-      key: PageStorageKey('QRScreen'),
+    Personal(
+      key: PageStorageKey('Personal'),
     ),
   ];
 
@@ -57,11 +56,16 @@ class _HomeControllerState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: _bottomNavigationBar(_selectedIndex),
-      body: PageStorage(
-        child: pages[_selectedIndex],
-        bucket: bucket,
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Scaffold(
+        bottomNavigationBar: _bottomNavigationBar(_selectedIndex),
+        body: PageStorage(
+          child: pages[_selectedIndex],
+          bucket: bucket,
+        ),
       ),
     );
   }

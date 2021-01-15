@@ -24,6 +24,30 @@ class Covid19TotalApi extends HttpBaseApi {
   }
 }
 
+class Covid19NewsApi extends HttpBaseApi {
+  @override
+  String path() {
+    return '';
+  }
+
+  @override
+  HttpMethod method() {
+    return HttpMethod.http_get;
+  }
+}
+
+class Covid19NullApi extends HttpBaseApi {
+  @override
+  String path() {
+    return '';
+  }
+
+  @override
+  HttpMethod methord() {
+    return HttpMethod.http_get;
+  }
+}
+
 class Covid19NotifyApi extends HttpBaseApi {
   @override
   String path() {
